@@ -1,0 +1,29 @@
+.cardlist__row {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.cardlist__col:nth-child(2n+1) {
+  padding: ($gutter / 2);
+}
+
+.cardlist__col:nth-child(2n) {
+  padding: ($gutter / 2);
+}
+
+.cardlist .card {
+  flex-direction: column;
+}
+
+.cardlist .button {
+  margin: auto;
+}
+
+@media (min-width: 600px) {
+  .cardlist__col {
+    width: 100%;
+    max-width: 50%;
+  }
+}

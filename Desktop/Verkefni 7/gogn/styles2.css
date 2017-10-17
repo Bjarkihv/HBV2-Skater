@@ -1,0 +1,186 @@
+      
+      
+      /* Almennt */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      
+      html {
+        font-family: 'Raleway', sans-serif;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+      
+      body {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+      }
+
+      /* Header - Main - Footer */
+      header {
+        width: 100%;
+        height: 25em;
+        margin-bottom: 5em;
+        padding-top: 5em;
+        background: transparent url(header.jpg) no-repeat fixed 50% 50%;
+        background-size: cover;
+      }
+
+      
+      main {
+        width: 100%;
+        max-width: 75em;
+        text-align: center;
+        margin: 0 auto;
+        border-bottom: solid;
+        border-bottom-color: #999;
+        border-bottom-width: 2px;
+        padding-bottom: 1em;
+      }
+
+      
+      footer {
+        width: 100%;
+        max-width: 75em;
+        text-align: center;
+        margin: 0 auto;
+        padding: 3em;
+      }
+
+      footer > p:first-of-type::first-letter {
+        font-size: 1em;
+        font-weight: normal;
+        line-height: 1.5em;
+        float: none;
+        padding-right: 0;
+      }
+      
+
+      /* Containerar fyrir flexbox galdra */
+      .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 4em;
+        margin-bottom: 5em;
+      }
+      
+      .box1 {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2em;
+      }
+      
+      .box2 {
+        display: flex;
+        align-items: center;
+      }
+      
+      .img img {
+        /* 30% * 3, þ.e.a.s. fyrir hverja mynd... held ég... */
+        width: 90%;
+        height: auto;
+        padding: 1em;
+      }
+      
+
+      /* Fyrirmæli fyrir fyrirsagnir */
+      h1,
+      h2,
+      h3,
+      blockquote {
+        font-family: 'Droid serif', sans-serif;
+      }
+      
+      h1 {
+        margin-bottom: 0.2em;
+        font-size: 6em;
+        text-align: center;
+        text-shadow: 3px 3px 0px rgba(255, 255, 255, 1);
+      }
+      
+      h2:first-of-type {
+        font-style: italic;
+        font-size: 4em;
+        text-align: center;
+        text-shadow: 3px 3px 0px rgba(255, 255, 255, 1);
+      }
+      
+      h2.fs {
+        font-size: 5em;
+        border-bottom: solid;
+        border-bottom-color: #999;
+        border-bottom-width: 2px;
+        padding-bottom: 1em;
+        margin: 0 auto;
+        text-shadow: none;
+        font-style: normal;
+        text-align: center;
+      }
+      
+      h3 {
+        font-size: 3em;
+        margin-bottom: 1em;
+        margin-top: 1em;
+        text-align: start;
+      }
+
+      blockquote {
+        margin: 1em;
+        text-align: center;
+        font-size: 3em;
+        line-height: 1.5;
+        font-style: italic;
+      }
+      
+      blockquote.instructions {
+        font-size: 2em;
+        line-height: 1.5;
+        font-style: italic;
+      }
+
+
+      /* Meginmál */
+      
+      p {
+        font-size: 2em;
+        line-height: 1.5em;
+      }
+      
+      p:first-of-type::first-letter {
+        font-size: 6em;
+        font-weight: bold;
+        line-height: 1em;
+        float: left;
+        padding-right: 0.1em;
+      }
+      
+
+      
+      /* Myndir og hlekkir */
+      figure {
+        float: right;
+        margin-top: 2em;
+        margin-bottom: 2em;
+        margin-left: 2em;
+      }
+      
+      a {
+        text-decoration: none;
+        font-weight: bold;
+      }
+      
+      a:link {
+        color: black;
+      }
+      
+      a:visited {
+        color: black;
+      }
+      
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }

@@ -1,0 +1,42 @@
+.text {
+  &__p {
+    margin-bottom: 5em;
+    margin-left: 2.5rem;
+    font-size: 1.2em;
+    white-space: pre-line;
+  }
+
+  &__ps {
+    margin-bottom: 10em;
+    font-size: 1em;
+    text-align: center;
+  }
+
+  &__pb {
+    margin-top: 1em;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &__pf {
+    padding-top: 1em;
+    font-size: 1em;
+    color: #666;
+    text-align: center;
+    border-top: solid;
+  }
+
+  &__bottom {
+    font-size: 1em;
+    text-align: center;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}

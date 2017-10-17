@@ -1,0 +1,122 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -($gutter / 2);
+  margin-bottom: $gutter;
+  margin-left: -($gutter / 2);
+
+}
+
+.bottommarg {
+  margin-bottom: 2em;
+}
+
+.topmarg {
+  margin-top: 3em;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+
+}
+
+// mixin sem reiknar nákvæmar prósentur útfrá dálkum
+@mixin columns($col: 1) {
+  // margföldum með "1%" til að breyta gildi í prósentu gildi
+  width: ($col / 12 * 100) * 1%;
+
+}
+
+.col {
+  padding-right: $gutter / 2;
+  padding-left: $gutter / 2;
+
+  &-12 {
+    @include columns(12);
+    width: 100%;
+
+  }
+
+  .offset-3 {
+    margin-left: 25%;
+  }
+
+  .offset-4 {
+    margin-left: 33.333%;
+  }
+
+  .offset-6 {
+    margin-left: 50%;
+  }
+
+}
+
+.grid {
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+.nopad {
+  padding: 0;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-8 {
+  width: 66.666%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.333%;
+}
+
+.col-42 {
+  width: 33.333%;
+}
+
+.col-2 {
+  width: 16.666%;
+  margin-right: 6.5em;
+  margin-left: 6.2em;
+}
+
+.col-bot {
+  width: 16.666%;
+  margin-right: 4em;
+  margin-left: 4em;
+}
+
+.leftmarg {
+  margin-left: 5em;
+}
+
+@media (max-width: 599px) {
+  .col-6 {
+    width: 100%;
+    margin: 0 1em;
+  }
+
+  .col-4 {
+    width: 50%;
+  }
+
+  .col-42 {
+    width: 50%;
+    margin: -16em 0 -3em 7.6em;
+  }
+
+  .topmarg {
+    margin-top: 3em;
+  }
+
+  .leftmarg {
+    margin-left: 0;
+  }
+}
