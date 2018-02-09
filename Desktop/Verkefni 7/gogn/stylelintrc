@@ -1,7 +1,0 @@
-// Ef vandræði með styleint, endurskýra þessa skrá ".stylelintrc" og eyða þessari línu
-{
-  "extends": "stylelint-config-primer",
-  "rules": {
-    "plugin/no-unsupported-browser-features": null
-  }
-}
