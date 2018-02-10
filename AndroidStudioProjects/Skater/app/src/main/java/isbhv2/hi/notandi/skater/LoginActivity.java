@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +18,8 @@ public class LoginActivity extends AppCompatActivity {
         final EditText logPassword = (EditText) findViewById(R.id.loginPassword);
         final Button bLogin = (Button) findViewById(R.id.loginButton);
         final TextView registerLink = (TextView) findViewById(R.id.registerLink);
+        System.out.println("Hallo");
+        System.out.println("Hallo");
 
         registerLink.setOnClickListener(new View.OnClickListener() {
             @Override
