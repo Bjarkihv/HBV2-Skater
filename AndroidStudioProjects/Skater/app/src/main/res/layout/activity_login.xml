@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="isbhv2.hi.notandi.skater.LoginActivity">
@@ -13,9 +12,12 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:hint="Notendanafn"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/loginPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:hint="Notendanafn" />
 
     <EditText
         android:id="@+id/loginPassword"
@@ -23,28 +25,36 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        tools:hint="Lykilorð"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="62dp" />
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginUsername"
+        tools:hint="Lykilorð" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="352dp"
         android:layout_height="wrap_content"
         android:text="Innskrá"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="108dp" />
+        app:layout_constraintBottom_toTopOf="@+id/registerLink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
     <TextView
         android:id="@+id/registerLink"
-        android:layout_width="107dp"
-        android:layout_height="39dp"
+        android:layout_width="83dp"
+        android:layout_height="32dp"
+        android:autoText="false"
         android:singleLine="false"
-        android:textStyle="normal"
-        tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="156dp"
-        tools:text="Register"
-        tools:textAlignment="center"
+        android:text="Register"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:textSize="18sp" />
 
 </android.support.constraint.ConstraintLayout>

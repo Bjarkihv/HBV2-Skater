@@ -6,4 +6,61 @@
     android:layout_height="match_parent"
     tools:context="isbhv2.hi.notandi.skater.UserAreaActivity">
 
+    <TextView
+        android:id="@+id/nsLabel"
+        android:layout_width="155dp"
+        android:layout_height="34dp"
+        android:text="Notendasvæði"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/nsUsername"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.133" />
+
+    <EditText
+        android:id="@+id/nsUsername"
+        android:layout_width="356dp"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.157" />
+
+    <TextView
+        android:id="@+id/nsUserLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notandi"
+        app:layout_constraintBottom_toTopOf="@+id/nsUsername"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nsLabel" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:text="Skrá stað"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.658" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:text="Finna staði"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.423" />
 </android.support.constraint.ConstraintLayout>
