@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".UserAreaActivity"></activity>
+        <activity android:name=".UserAreaActivity" />
+        <activity android:name=".AddSpotActivity" />
+        <activity android:name=".FindSpotActivity"></activity>
     </application>
 
 </manifest>
