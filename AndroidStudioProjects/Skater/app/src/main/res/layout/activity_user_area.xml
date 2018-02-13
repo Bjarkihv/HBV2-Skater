@@ -8,37 +8,25 @@
 
     <TextView
         android:id="@+id/nsLabel"
-        android:layout_width="155dp"
+        android:layout_width="164dp"
         android:layout_height="34dp"
         android:text="Notendasvæði"
+        android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/nsUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133" />
-
-    <EditText
-        android:id="@+id/nsUsername"
-        android:layout_width="356dp"
-        android:layout_height="60dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/nsUserLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notandi"
-        app:layout_constraintBottom_toTopOf="@+id/nsUsername"
+        android:layout_width="259dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="28dp"
+        android:textAlignment="center"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nsLabel" />
 

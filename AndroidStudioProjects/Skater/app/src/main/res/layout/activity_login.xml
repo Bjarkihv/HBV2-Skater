@@ -45,11 +45,11 @@
 
     <TextView
         android:id="@+id/registerLink"
-        android:layout_width="83dp"
+        android:layout_width="110dp"
         android:layout_height="32dp"
         android:autoText="false"
         android:singleLine="false"
-        android:text="Register"
+        android:text="Nýskráning"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
