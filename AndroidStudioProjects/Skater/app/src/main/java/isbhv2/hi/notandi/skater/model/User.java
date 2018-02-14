@@ -10,7 +10,14 @@ public class User {
     public String username = "Guest";
     public String email;
     public int photoId;
-    public Point location;
+    //public Point location;
+
+    public User(String username, String email, int photoId) {
+        this.username = username;
+        this.email = email;
+        this.photoId = photoId;
+        //this.location = location;
+    }
 
     public String getUsername() {
         return username;
@@ -36,6 +43,7 @@ public class User {
         this.photoId = photoId;
     }
 
+    /*
     public Point getLocation() {
         return location;
     }
@@ -43,6 +51,7 @@ public class User {
     public void setLocation(Point location) {
         this.location = location;
     }
+    */
 
 
 
