@@ -1,7 +1,5 @@
 package isbhv2.hi.notandi.skater.service;
 
-import android.util.Log;
-
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 

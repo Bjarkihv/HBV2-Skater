@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,7 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import isbhv2.hi.notandi.skater.R;
-import isbhv2.hi.notandi.skater.service.LoginRequest;
 import isbhv2.hi.notandi.skater.service.SearchRequest;
 
 public class FindSpotActivity extends AppCompatActivity {
