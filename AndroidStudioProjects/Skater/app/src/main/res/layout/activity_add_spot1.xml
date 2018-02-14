@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.notandi.sqltestapp1.searchActivity">
+
+    <TextView
+        android:id="@+id/createNew"
+        android:layout_width="171dp"
+        android:layout_height="29dp"
+        android:text="bæta við stað"
+        app:layout_constraintBottom_toTopOf="@+id/addLocation"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.032" />
+
+    <Button
+        android:id="@+id/createNewPark"
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:onClick="SubmitParkToDB"
+        android:text="búa til nýjan stað"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addExtra"
+        tools:layout_editor_absoluteX="123dp" />
+
+    <EditText
+        android:id="@+id/addLocation"
+        android:layout_width="223dp"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:inputType="text|textPersonName"
+        android:text="Hvar er staðurinn?"
+        app:layout_constraintBottom_toTopOf="@+id/addInside"
+        app:layout_constraintTop_toBottomOf="@+id/createNew"
+        tools:layout_editor_absoluteX="13dp" />
+
+    <EditText
+        android:id="@+id/addInside"
+        android:layout_width="217dp"
+        android:layout_height="53dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="Er staðurinn inni"
+        app:layout_constraintBottom_toTopOf="@+id/addInfo"
+        app:layout_constraintTop_toBottomOf="@+id/addLocation"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/addInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text|textPersonName"
+        android:text="Upplýsingar um stað"
+        app:layout_constraintBottom_toTopOf="@+id/addExtra"
+        app:layout_constraintTop_toBottomOf="@+id/addInside"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/addExtra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text|textPersonName"
+        android:text="Fleira"
+        app:layout_constraintBottom_toTopOf="@+id/createNewPark"
+        app:layout_constraintTop_toBottomOf="@+id/addInfo"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <CheckBox
+        android:id="@+id/isInside"
+        android:layout_width="33dp"
+        android:layout_height="32dp"
+        android:text="CheckBox"
+        app:layout_constraintBottom_toTopOf="@+id/createNewPark"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="301dp" />
+
+</android.support.constraint.ConstraintLayout>
