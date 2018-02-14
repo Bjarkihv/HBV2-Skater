@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="isbhv2.hi.notandi.skater">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -21,7 +21,8 @@
         <activity android:name=".controller.RegisterActivity" />
         <activity android:name=".controller.UserAreaActivity" />
         <activity android:name=".controller.AddSpotActivity" />
-        <activity android:name=".controller.FindSpotActivity"></activity>
+        <activity android:name=".controller.FindSpotActivity" />
+        <activity android:name=".controller.ResultsActivity"></activity>
     </application>
 
 </manifest>

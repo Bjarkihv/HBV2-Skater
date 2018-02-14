@@ -22,7 +22,7 @@ import isbhv2.hi.notandi.skater.model.User;
 import isbhv2.hi.notandi.skater.service.LoginRequest;
 
 public class LoginActivity extends AppCompatActivity {
-    public User currentUser;
+    public User currentUser = new User("Guest", "bla@bla.com", 1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
