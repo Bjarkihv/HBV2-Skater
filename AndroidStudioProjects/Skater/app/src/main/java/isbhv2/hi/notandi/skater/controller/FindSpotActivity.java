@@ -1,8 +1,10 @@
-package isbhv2.hi.notandi.skater;
+package isbhv2.hi.notandi.skater.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+
+import isbhv2.hi.notandi.skater.R;
 
 public class FindSpotActivity extends AppCompatActivity {
 

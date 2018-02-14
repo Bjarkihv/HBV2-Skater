@@ -1,7 +1,9 @@
-package isbhv2.hi.notandi.skater;
+package isbhv2.hi.notandi.skater.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import isbhv2.hi.notandi.skater.R;
 
 public class AddSpotActivity extends AppCompatActivity {
 

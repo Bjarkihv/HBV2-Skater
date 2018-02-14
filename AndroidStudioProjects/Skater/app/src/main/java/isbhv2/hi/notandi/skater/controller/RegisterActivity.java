@@ -1,4 +1,4 @@
-package isbhv2.hi.notandi.skater;
+package isbhv2.hi.notandi.skater.controller;
 
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -16,6 +16,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import isbhv2.hi.notandi.skater.R;
+import isbhv2.hi.notandi.skater.service.RegisterRequest;
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
@@ -28,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText regPassword = (EditText) findViewById(R.id.inputPassword);
         final Button bRegister = (Button) findViewById(R.id.registerButton);
 
+        // Ættum kannski að gera fragment klasa fyrir þetta
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

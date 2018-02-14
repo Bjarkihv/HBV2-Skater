@@ -1,4 +1,4 @@
-package isbhv2.hi.notandi.skater;
+package isbhv2.hi.notandi.skater.service;
 
 import android.util.Log;
 
@@ -12,15 +12,17 @@ import java.util.Map;
  * Created by Bjarki on 13.2.2018.
  */
 
-public class LoginRequest extends StringRequest {
-    private static final String LOGIN_REQUEST_URL= "http://10.0.2.2/login.php";
+public class RegisterRequest extends StringRequest {
+    private static final String REGISTER_REQUEST_URL= "http://10.0.2.2/register.php";
     private Map<String, String> params;
 
-    public LoginRequest(String username, String password, Response.Listener<String> listener){
-        super(Method.POST, LOGIN_REQUEST_URL, listener, null);
+    public RegisterRequest(String username, String email, String password, Response.Listener<String> listener){
+        super(Method.POST, REGISTER_REQUEST_URL, listener, null);
         params = new HashMap<>();
         params.put("username", username);
+        params.put("email", email);
         params.put("password", password);
+        Log.d("myTag", username + "  " + email + "  " + password);
     }
 
     @Override

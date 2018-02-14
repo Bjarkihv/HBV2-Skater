@@ -1,4 +1,4 @@
-package isbhv2.hi.notandi.skater;
+package isbhv2.hi.notandi.skater.controller;
 
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -17,7 +17,12 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import isbhv2.hi.notandi.skater.R;
+import isbhv2.hi.notandi.skater.model.User;
+import isbhv2.hi.notandi.skater.service.LoginRequest;
+
 public class LoginActivity extends AppCompatActivity {
+    public User currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button bLogin = (Button) findViewById(R.id.loginButton);
         final TextView registerLink = (TextView) findViewById(R.id.registerLink);
 
+        // Ættum kannski að gera fragment klasa fyrir þetta
         registerLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +58,9 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(success){
                                 String username = jsonResponse.getString("username");
+                                currentUser.setUsername(username);
+                                // prófa location fídusinn seinna þegar hann er kominn inn
+                                //currentUser.setLocation(currentLocation);
 
                                 Intent intent = new Intent(LoginActivity.this, UserAreaActivity.class);
                                 intent.putExtra("username", username);
