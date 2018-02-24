@@ -13,7 +13,7 @@ import java.util.Map;
  */
 
 public class SearchRequest extends StringRequest {
-    private static final String SEARCH_REQUEST_URL= "http://10.0.2.2/spots.php";
+    private static final String SEARCH_REQUEST_URL= "http://skaterapp.xyz/spots.php";
     private Map<String, String> params;
 
     public SearchRequest(String name, Response.Listener<String> listener){
