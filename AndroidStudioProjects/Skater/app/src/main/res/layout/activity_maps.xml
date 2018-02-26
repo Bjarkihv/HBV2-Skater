@@ -28,7 +28,7 @@
         android:text="Lýsing" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/cbTroppur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -39,12 +39,12 @@
         android:text="Tröppur" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/cbHandrid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/checkBox2"
+        android:layout_below="@+id/cbTroppur"
         android:layout_toLeftOf="@+id/lysingText"
         android:layout_toStartOf="@+id/lysingText"
         android:text="Handrið" />
@@ -56,28 +56,29 @@
         android:layout_above="@+id/map"
         android:layout_alignEnd="@+id/nafnText"
         android:layout_alignRight="@+id/nafnText"
-        android:layout_toEndOf="@+id/checkBox5"
-        android:layout_toRightOf="@+id/checkBox5"
+        android:layout_toEndOf="@+id/cbVetur"
+        android:layout_toRightOf="@+id/cbVetur"
+        android:onClick="onClick"
         android:text="Senda" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/cbRampur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/checkBox3"
+        android:layout_below="@+id/cbHandrid"
         android:layout_toLeftOf="@+id/lysingText"
         android:layout_toStartOf="@+id/lysingText"
         android:text="Rampur" />
 
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/cbVetur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/checkBox4"
+        android:layout_below="@+id/cbRampur"
         android:layout_toLeftOf="@+id/lysingText"
         android:layout_toStartOf="@+id/lysingText"
         android:text="Vetrarvænt" />
@@ -98,36 +99,36 @@
         android:text="Nafn" />
 
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/cbInnandyra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/checkBox5"
+        android:layout_below="@+id/cbVetur"
         android:layout_toLeftOf="@+id/lysingText"
         android:layout_toStartOf="@+id/lysingText"
         android:text="Innandyra" />
 
     <CheckBox
-        android:id="@+id/checkBox7"
+        android:id="@+id/cbDropp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/checkBox6"
+        android:layout_below="@+id/cbInnandyra"
         android:layout_toLeftOf="@+id/lysingText"
         android:layout_toStartOf="@+id/lysingText"
         android:text="Drop" />
 
     <CheckBox
-        android:id="@+id/checkBox9"
+        android:id="@+id/cbUpplyst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/checkBox7"
+        android:layout_alignEnd="@+id/cbDropp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/checkBox7"
-        android:layout_below="@+id/checkBox7"
+        android:layout_alignRight="@+id/cbDropp"
+        android:layout_below="@+id/cbDropp"
         android:text="Upplýst" />
 
 </RelativeLayout>

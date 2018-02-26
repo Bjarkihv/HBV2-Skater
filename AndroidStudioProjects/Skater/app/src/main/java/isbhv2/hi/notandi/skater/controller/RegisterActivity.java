@@ -26,12 +26,11 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register); // Hvaða XML skrá þetta activity notar
 
-        final EditText regEmail = (EditText) findViewById(R.id.inputEmail);
+        final EditText regEmail = (EditText) findViewById(R.id.nafnText);
         final EditText regUsername = (EditText) findViewById(R.id.inputName);
         final EditText regPassword = (EditText) findViewById(R.id.inputPassword);
         final Button bRegister = (Button) findViewById(R.id.registerButton);
 
-        // Ættum kannski að gera fragment klasa fyrir þetta
         bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

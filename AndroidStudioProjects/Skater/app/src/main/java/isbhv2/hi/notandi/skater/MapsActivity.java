@@ -1,6 +1,7 @@
 package isbhv2.hi.notandi.skater;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -12,11 +13,17 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -31,10 +38,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.List;
 
 import isbhv2.hi.notandi.skater.R;
+import isbhv2.hi.notandi.skater.controller.LoginActivity;
+import isbhv2.hi.notandi.skater.controller.RegisterActivity;
+import isbhv2.hi.notandi.skater.controller.UserAreaActivity;
+import isbhv2.hi.notandi.skater.service.RegisterRequest;
+import isbhv2.hi.notandi.skater.service.newSpotRequest;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
@@ -48,6 +63,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Location lastLocation;
     private Marker currentLocationMarker;
     public static final int REQUEST_LOCATION_CODE = 99;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +79,69 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        final EditText spotNafn = (EditText) findViewById(R.id.nafnText);
+        final EditText spotLysing = (EditText) findViewById(R.id.lysingText);
+        final CheckBox checkTroppur = (CheckBox) findViewById(R.id.cbTroppur);
+        final CheckBox checkHandrid = (CheckBox) findViewById(R.id.cbHandrid);
+        final CheckBox checkRampur = (CheckBox) findViewById(R.id.cbRampur);
+        final CheckBox checkVetur = (CheckBox) findViewById(R.id.cbVetur);
+        final CheckBox checkInnandyra = (CheckBox) findViewById(R.id.cbInnandyra);
+        final CheckBox checkDropp = (CheckBox) findViewById(R.id.cbDropp);
+        final CheckBox checkUpplyst = (CheckBox) findViewById(R.id.cbUpplyst);
+        final Button bSenda = (Button) findViewById(R.id.bSenda);
+
+        bSenda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String nafn = spotNafn.getText().toString();
+                final String lysing = spotLysing.getText().toString();
+                final String troppur = Boolean.toString(checkTroppur.isChecked());
+                final String handrid = Boolean.toString(checkHandrid.isChecked());
+                final String rampur = Boolean.toString(checkRampur.isChecked());
+                final String vetur = Boolean.toString(checkVetur.isChecked());
+                final String innandyra = Boolean.toString(checkInnandyra.isChecked());
+                final String dropp = Boolean.toString(checkDropp.isChecked());
+                final String upplyst = Boolean.toString(checkUpplyst.isChecked());
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("myTag", "Response móttekið");
+
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            boolean success = jsonResponse.getBoolean("success");
+
+                            // Ef þetta tekst þá sendum við notanda aftur á login síðuna.
+                            if (success) {
+                                Log.d("myTag", "Intent keyrt");
+                                Intent intent = new Intent(MapsActivity.this, UserAreaActivity.class);
+                                MapsActivity.this.startActivity(intent);
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+                                builder.setMessage("Skráning tókst ekki")
+                                        .setNegativeButton("Reyna aftur", null)
+                                        .create()
+                                        .show();
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                };
+
+                newSpotRequest spotRequest = new newSpotRequest(nafn, lysing, troppur, handrid, rampur,
+                        vetur, innandyra, dropp, upplyst, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(MapsActivity.this);
+                queue.add(spotRequest);
+            }
+
+        });
+
     }
 
     @Override
@@ -104,7 +183,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         // Þegar kortið er tilbúið til notkunar
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        //mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -116,8 +195,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
-    }
 
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+
+                // Creating a marker
+                MarkerOptions markerOptions = new MarkerOptions();
+
+                // Setting the position for the marker
+                markerOptions.position(latLng);
+
+                // Setting the title for the marker.
+                // This will be displayed on taping the marker
+                markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+
+                // Clears the previously touched position
+                mMap.clear();
+
+                // Animating to the touched position
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+                // Placing a marker on the touched position
+                mMap.addMarker(markerOptions);
+            }
+        });
+    }
+/*
     public void onClick(View v)
     {
         if(v.getId() == R.id.B_Search){
@@ -146,6 +250,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
+*/
 
     protected synchronized void buildGoogleApiClient(){
         client = new GoogleApiClient.Builder(this)
