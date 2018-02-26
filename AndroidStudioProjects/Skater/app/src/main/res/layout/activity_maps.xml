@@ -1,0 +1,133 @@
+<RelativeLayout
+    android:layout_height="700dp"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="470dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:context="isbhv2.hi.notandi.skater.MapsActivity" />
+
+    <EditText
+        android:id="@+id/lysingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bSenda"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/nafnText"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="Lýsing" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/checkBox"
+        android:layout_toLeftOf="@+id/lysingText"
+        android:layout_toStartOf="@+id/lysingText"
+        android:text="Tröppur" />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/checkBox2"
+        android:layout_toLeftOf="@+id/lysingText"
+        android:layout_toStartOf="@+id/lysingText"
+        android:text="Handrið" />
+
+    <Button
+        android:id="@+id/bSenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/map"
+        android:layout_alignEnd="@+id/nafnText"
+        android:layout_alignRight="@+id/nafnText"
+        android:layout_toEndOf="@+id/checkBox5"
+        android:layout_toRightOf="@+id/checkBox5"
+        android:text="Senda" />
+
+    <CheckBox
+        android:id="@+id/checkBox4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/checkBox3"
+        android:layout_toLeftOf="@+id/lysingText"
+        android:layout_toStartOf="@+id/lysingText"
+        android:text="Rampur" />
+
+    <CheckBox
+        android:id="@+id/checkBox5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/checkBox4"
+        android:layout_toLeftOf="@+id/lysingText"
+        android:layout_toStartOf="@+id/lysingText"
+        android:text="Vetrarvænt" />
+
+    <EditText
+        android:id="@+id/nafnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
+        android:layout_toEndOf="@+id/checkBox"
+        android:layout_toRightOf="@+id/checkBox"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nafn" />
+
+    <CheckBox
+        android:id="@+id/checkBox6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/checkBox5"
+        android:layout_toLeftOf="@+id/lysingText"
+        android:layout_toStartOf="@+id/lysingText"
+        android:text="Innandyra" />
+
+    <CheckBox
+        android:id="@+id/checkBox7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/checkBox6"
+        android:layout_toLeftOf="@+id/lysingText"
+        android:layout_toStartOf="@+id/lysingText"
+        android:text="Drop" />
+
+    <CheckBox
+        android:id="@+id/checkBox9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/checkBox7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/checkBox7"
+        android:layout_below="@+id/checkBox7"
+        android:text="Upplýst" />
+
+</RelativeLayout>

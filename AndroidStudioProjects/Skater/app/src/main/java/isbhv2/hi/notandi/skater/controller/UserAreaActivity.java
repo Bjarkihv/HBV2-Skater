@@ -7,22 +7,33 @@ import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
 
+import isbhv2.hi.notandi.skater.MapsActivity;
 import isbhv2.hi.notandi.skater.R;
 
 public class UserAreaActivity extends AppCompatActivity {
 
     private Button findSpotLaunch;
+    private Button addSpotLaunch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_area);
         findSpotLaunch = (Button) findViewById(R.id.button2);
+        addSpotLaunch = (Button) findViewById(R.id.button);
 
         findSpotLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 launchActivity();
+            }
+        });
+
+        addSpotLaunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                launchActivity2();
             }
         });
 
@@ -37,6 +48,12 @@ public class UserAreaActivity extends AppCompatActivity {
     private void launchActivity() {
 
         Intent intent = new Intent(this, FindSpotActivity.class);
+        startActivity(intent);
+    }
+
+    private void launchActivity2() {
+
+        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 }
