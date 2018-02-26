@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -61,6 +62,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleApiClient client;
     private LocationRequest locationRequest;
     private Location lastLocation;
+    private LatLng spot;
     private Marker currentLocationMarker;
     public static final int REQUEST_LOCATION_CODE = 99;
 
@@ -104,6 +106,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 final String dropp = Boolean.toString(checkDropp.isChecked());
                 final String upplyst = Boolean.toString(checkUpplyst.isChecked());
 
+                Double dLat = spot.latitude;
+                Double dLng = spot.longitude;
+                String lat = dLat.toString();
+                String lng = dLng.toString();
+
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -135,7 +142,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 };
 
                 newSpotRequest spotRequest = new newSpotRequest(nafn, lysing, troppur, handrid, rampur,
-                        vetur, innandyra, dropp, upplyst, responseListener);
+                        vetur, innandyra, dropp, upplyst, lat, lng, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(MapsActivity.this);
                 queue.add(spotRequest);
             }
@@ -205,6 +212,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 // Setting the position for the marker
                 markerOptions.position(latLng);
+
+                spot = latLng;
+
+                Double l1=latLng.latitude;
+                Double l2=latLng.longitude;
+                String coordl1 = l1.toString();
+                String coordl2 = l2.toString();
+                l1 = Double.parseDouble(coordl1);
+                l2 = Double.parseDouble(coordl2);
+
+                final TextView hnit = (TextView) findViewById(R.id.hnitText);
+                hnit.setText(coordl1 + ", " + coordl2);
 
                 // Setting the title for the marker.
                 // This will be displayed on taping the marker

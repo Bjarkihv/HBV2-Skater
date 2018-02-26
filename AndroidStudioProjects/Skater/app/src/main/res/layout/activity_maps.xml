@@ -1,4 +1,4 @@
-<RelativeLayout
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="700dp"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -10,9 +10,9 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="470dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView"
         tools:context="isbhv2.hi.notandi.skater.MapsActivity" />
 
     <EditText
@@ -53,11 +53,11 @@
         android:id="@+id/bSenda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/map"
-        android:layout_alignEnd="@+id/nafnText"
-        android:layout_alignRight="@+id/nafnText"
-        android:layout_toEndOf="@+id/cbVetur"
-        android:layout_toRightOf="@+id/cbVetur"
+        android:layout_alignBottom="@+id/cbUpplyst"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_toEndOf="@+id/cbDropp"
+        android:layout_toRightOf="@+id/cbDropp"
         android:onClick="onClick"
         android:text="Senda" />
 
@@ -130,5 +130,26 @@
         android:layout_alignRight="@+id/cbDropp"
         android:layout_below="@+id/cbDropp"
         android:text="Upplýst" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/cbUpplyst"
+        android:text="Hnit:"
+        android:textSize="24sp"
+        tools:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/hnitText"
+        android:layout_width="310dp"
+        android:layout_height="22dp"
+        android:layout_above="@+id/map"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
+        android:text="12123123123123123123123123123123"
+        android:textSize="14sp" />
 
 </RelativeLayout>
