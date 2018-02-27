@@ -42,14 +42,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.util.List;
-
-import isbhv2.hi.notandi.skater.R;
-import isbhv2.hi.notandi.skater.controller.LoginActivity;
-import isbhv2.hi.notandi.skater.controller.RegisterActivity;
 import isbhv2.hi.notandi.skater.controller.UserAreaActivity;
-import isbhv2.hi.notandi.skater.service.RegisterRequest;
 import isbhv2.hi.notandi.skater.service.newSpotRequest;
 
 

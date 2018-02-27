@@ -2,4 +2,5 @@
     <string name="app_name">Skater</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_camera">CameraActivity</string>
+    <string name="title_activity_info_maps">Map</string>
 </resources>
