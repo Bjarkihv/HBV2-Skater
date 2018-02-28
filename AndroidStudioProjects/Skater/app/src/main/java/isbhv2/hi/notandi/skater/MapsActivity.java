@@ -43,6 +43,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import isbhv2.hi.notandi.skater.controller.UserAreaActivity;
+import isbhv2.hi.notandi.skater.service.CameraActivity;
 import isbhv2.hi.notandi.skater.service.newSpotRequest;
 
 
@@ -85,6 +86,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final CheckBox checkDropp = (CheckBox) findViewById(R.id.cbDropp);
         final CheckBox checkUpplyst = (CheckBox) findViewById(R.id.cbUpplyst);
         final Button bSenda = (Button) findViewById(R.id.bSenda);
+        final Button bMynd = (Button) findViewById(R.id.bMynd);
+
+        bMynd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, CameraActivity.class);
+                MapsActivity.this.startActivity(intent);
+            }
+        });
 
         bSenda.setOnClickListener(new View.OnClickListener() {
             @Override
