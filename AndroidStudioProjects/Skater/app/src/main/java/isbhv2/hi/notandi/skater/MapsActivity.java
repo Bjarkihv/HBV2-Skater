@@ -87,12 +87,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final CheckBox checkUpplyst = (CheckBox) findViewById(R.id.cbUpplyst);
         final Button bSenda = (Button) findViewById(R.id.bSenda);
         final Button bMynd = (Button) findViewById(R.id.bMynd);
+        final int CAMERA_REQUEST = 1888;
 
         bMynd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MapsActivity.this, CameraActivity.class);
-                MapsActivity.this.startActivity(intent);
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
         });
 

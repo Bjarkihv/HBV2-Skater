@@ -35,28 +35,32 @@ public class ResultsActivity extends AppCompatActivity {
         final String dropp = intent.getStringExtra("dropp");
         final String upplyst = intent.getStringExtra("upplyst");
 
-        String flokkar = "";
-        if(troppur.equals("true")) flokkar += "tröppur, ";
-        if(handrid.equals("true")) flokkar += "handrið, ";
-        if(rampur.equals("true")) flokkar += "rampur, ";
-        if(vetur.equals("true")) flokkar += "vetrarvænt, ";
-        if(innandyra.equals("true")) flokkar += "innandyra, ";
-        if(dropp.equals("true")) flokkar += "drop, ";
-        if(upplyst.equals("true")) flokkar += "upplýst, ";
+        String flokkar = "- ";
+        if(troppur.equals("true")) flokkar += "tröppur - ";
+        if(handrid.equals("true")) flokkar += "handrið - ";
+        if(rampur.equals("true")) flokkar += "rampur - ";
+        if(vetur.equals("true")) flokkar += "vetrarvænt - ";
+        if(innandyra.equals("true")) flokkar += "innandyra - ";
+        if(dropp.equals("true")) flokkar += "drop - ";
+        if(upplyst.equals("true")) flokkar += "upplýst - ";
+
+        final String finFlokkar = flokkar;
 
         ListView results;
-        String resultsList[] = {nafn + ":\n" + lysing + "\n" + "Til staðar: " + flokkar};
+        String resultsList[] = {nafn + ":\n" + lysing + "\n" + "Til staðar: " + finFlokkar};
 
         results = (ListView) findViewById(R.id.resultList);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_list_view, R.id.textView, resultsList);
         results.setAdapter(arrayAdapter);
 
         results.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(android.widget.AdapterView<?> parent, View view, int position, long id) {
                 Intent intent2 = new Intent(ResultsActivity.this, InfoMapsActivity.class);
                 intent2.putExtra("nafn", nafn);
-                intent2.putExtra("username", lysing);
+                intent2.putExtra("lysing", lysing);
+                intent2.putExtra("flokkar", finFlokkar);
                 intent2.putExtra("lat", lat);
                 intent2.putExtra("lng", lng);
                 ResultsActivity.this.startActivity(intent2);

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,8 +25,8 @@ public class InfoMapsActivity extends FragmentActivity implements OnMapReadyCall
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-    }
 
+    }
 
     /**
      * Manipulates the map once available.
@@ -38,17 +39,28 @@ public class InfoMapsActivity extends FragmentActivity implements OnMapReadyCall
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
+        final TextView spotName = (TextView) findViewById(R.id.spotName);
+        final TextView spotDesc = (TextView) findViewById(R.id.spotDesc);
+        final TextView spotCats = (TextView) findViewById(R.id.spotCats);
+
         mMap = googleMap;
 
         Intent intent = getIntent();
         String nafn = intent.getStringExtra("nafn");
+        String lysing = intent.getStringExtra("lysing");
+        String flokkar = intent.getStringExtra("flokkar");
         String lat = intent.getStringExtra("lat");
         String lng = intent.getStringExtra("lng");
         Double dLat = Double.parseDouble(lat);
         Double dLng = Double.parseDouble(lng);
         Log.d("myTag", lat + "    " + lng);
 
-        // Add a marker in Sydney and move the camera
+        spotName.setText(nafn);
+        spotDesc.setText(lysing);
+        spotCats.setText("Til staðar: " + flokkar);
+
+
         LatLng spot = new LatLng(dLat, dLng);
         mMap.addMarker(new MarkerOptions().position(spot).title(nafn));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(spot));
