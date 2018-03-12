@@ -9,13 +9,14 @@ import android.graphics.Point;
 public class User {
     public String username = "Guest";
     public String email;
+    public String spot;
     public int photoId;
     //public Point location;
 
-    public User(String username, String email, int photoId) {
+    public User(String username, String email, String spot) {
         this.username = username;
         this.email = email;
-        this.photoId = photoId;
+        this.spot = spot;
         //this.location = location;
     }
 
@@ -35,6 +36,14 @@ public class User {
         this.email = email;
     }
 
+    public String getSpot() {
+        return spot;
+    }
+
+    public void setSpot(String spot) {
+        this.spot = spot;
+    }
+
     public int getPhotoId() {
         return photoId;
     }
@@ -42,17 +51,6 @@ public class User {
     public void setPhotoId(int photoId) {
         this.photoId = photoId;
     }
-
-    /*
-    public Point getLocation() {
-        return location;
-    }
-
-    public void setLocation(Point location) {
-        this.location = location;
-    }
-    */
-
 
 
 }

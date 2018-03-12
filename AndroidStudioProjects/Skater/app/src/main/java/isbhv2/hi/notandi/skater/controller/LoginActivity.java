@@ -22,7 +22,7 @@ import isbhv2.hi.notandi.skater.model.User;
 import isbhv2.hi.notandi.skater.service.LoginRequest;
 
 public class LoginActivity extends AppCompatActivity {
-    public User currentUser = new User("Guest", "bla@bla.com", 1);
+    public static User currentUser = new User("Guest", "None", "None");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,12 +58,11 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(success){
                                 String username = jsonResponse.getString("username");
+                                String spot = jsonResponse.getString("spot");
+                                currentUser.setSpot(spot);
                                 currentUser.setUsername(username);
-                                // prófa location fídusinn seinna þegar hann er kominn inn
-                                //currentUser.setLocation(currentLocation);
 
                                 Intent intent = new Intent(LoginActivity.this, UserAreaActivity.class);
-                                intent.putExtra("username", username);
 
                                 LoginActivity.this.startActivity(intent);
 
