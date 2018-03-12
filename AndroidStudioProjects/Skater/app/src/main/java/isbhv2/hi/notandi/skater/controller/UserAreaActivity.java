@@ -53,6 +53,8 @@ public class UserAreaActivity extends AppCompatActivity {
         checkOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                currentUser.lastSpot = currentUser.spot;
+                currentUser.setSpot("None");
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -62,8 +64,6 @@ public class UserAreaActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             if(success){
-                                currentUser.setSpot("None");
-
                                 Intent intent = new Intent(UserAreaActivity.this, UserAreaActivity.class);
                                 UserAreaActivity.this.startActivity(intent);
 
@@ -81,7 +81,7 @@ public class UserAreaActivity extends AppCompatActivity {
                     }
                 };
 
-                CheckInOutRequest checkInOutRequest = new CheckInOutRequest("None", currentUser.username, responseListener);
+                CheckInOutRequest checkInOutRequest = new CheckInOutRequest(currentUser.lastSpot, currentUser.username, "true", responseListener);
                 RequestQueue queue = Volley.newRequestQueue(UserAreaActivity.this);
                 queue.add(checkInOutRequest);
             }

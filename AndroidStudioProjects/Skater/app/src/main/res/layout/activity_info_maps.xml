@@ -52,4 +52,13 @@
         android:layout_marginTop="11dp"
         android:text="TextView" />
 
+    <TextView
+        android:id="@+id/checkInLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/bCheckIn"
+        android:layout_toEndOf="@+id/spotName"
+        android:layout_toRightOf="@+id/spotName"
+        android:text="Þú ert nú þegar skráð/ur inn á stað." />
+
 </RelativeLayout>

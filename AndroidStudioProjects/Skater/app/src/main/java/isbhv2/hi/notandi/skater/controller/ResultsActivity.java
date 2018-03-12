@@ -34,6 +34,7 @@ public class ResultsActivity extends AppCompatActivity {
         final String innandyra = intent.getStringExtra("innandyra");
         final String dropp = intent.getStringExtra("dropp");
         final String upplyst = intent.getStringExtra("upplyst");
+        final String checkedIn = intent.getStringExtra("checkedIn");
 
         String flokkar = "- ";
         if(troppur.equals("true")) flokkar += "tröppur - ";
@@ -45,9 +46,15 @@ public class ResultsActivity extends AppCompatActivity {
         if(upplyst.equals("true")) flokkar += "upplýst - ";
 
         final String finFlokkar = flokkar;
+        String checkedInString = checkedIn + "notendur tékkaðir inn.";
+
+        if(checkedIn.equals("0"))
+            checkedInString = "Enginn notandi tékkaður inn.";
+        if(checkedIn.equals("1"))
+            checkedInString = "1 notandi tékkaður inn.";
 
         ListView results;
-        String resultsList[] = {nafn + ":\n" + lysing + "\n" + "Til staðar: " + finFlokkar};
+        String resultsList[] = {nafn + ":\n" + lysing + "\n" + "Til staðar: " + finFlokkar + "\n" + checkedInString};
 
         results = (ListView) findViewById(R.id.resultList);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_list_view, R.id.textView, resultsList);

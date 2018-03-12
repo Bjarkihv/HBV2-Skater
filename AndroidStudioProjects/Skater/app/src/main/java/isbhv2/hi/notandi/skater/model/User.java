@@ -10,6 +10,7 @@ public class User {
     public String username = "Guest";
     public String email;
     public String spot;
+    public String lastSpot;
     public int photoId;
     //public Point location;
 
@@ -38,6 +39,14 @@ public class User {
 
     public String getSpot() {
         return spot;
+    }
+
+    public void setLastSpot(String lastSpot) {
+        this.lastSpot = lastSpot;
+    }
+
+    public String getLastSpot() {
+        return lastSpot;
     }
 
     public void setSpot(String spot) {

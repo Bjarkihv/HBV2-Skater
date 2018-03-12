@@ -51,6 +51,7 @@ public class InfoMapsActivity extends FragmentActivity implements OnMapReadyCall
         final TextView spotName = (TextView) findViewById(R.id.spotName);
         final TextView spotDesc = (TextView) findViewById(R.id.spotDesc);
         final TextView spotCats = (TextView) findViewById(R.id.spotCats);
+        final TextView checkInLabel = (TextView) findViewById(R.id.checkInLabel);
         final Button bCheckIn = (Button) findViewById(R.id.bCheckIn);
 
         mMap = googleMap;
@@ -72,6 +73,11 @@ public class InfoMapsActivity extends FragmentActivity implements OnMapReadyCall
         LatLng spot = new LatLng(dLat, dLng);
         mMap.addMarker(new MarkerOptions().position(spot).title(nafn));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(spot));
+        checkInLabel.setText("");
+        if(!currentUser.spot.equals("None")) {
+            bCheckIn.setEnabled(false);
+            checkInLabel.setText("Þú ert nú þegar skráð/ur inn á stað.");
+        }
 
         bCheckIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +111,7 @@ public class InfoMapsActivity extends FragmentActivity implements OnMapReadyCall
                     }
                 };
 
-                CheckInOutRequest checkInOutRequest = new CheckInOutRequest(nafn, currentUser.username, responseListener);
+                CheckInOutRequest checkInOutRequest = new CheckInOutRequest(nafn, currentUser.username, "false", responseListener);
                 RequestQueue queue = Volley.newRequestQueue(InfoMapsActivity.this);
                 queue.add(checkInOutRequest);
             }

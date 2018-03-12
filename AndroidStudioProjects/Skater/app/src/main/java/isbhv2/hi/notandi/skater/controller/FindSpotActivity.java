@@ -73,6 +73,7 @@ public class FindSpotActivity extends AppCompatActivity {
                                 String indr = jsonResponse.getString("innandyra");
                                 String drp = jsonResponse.getString("dropp");
                                 String upl = jsonResponse.getString("upplyst");
+                                String cin = jsonResponse.getString("checkedIn");
 
                                 intent.putExtra("nafn", nfn);
                                 intent.putExtra("lysing", lsng);
@@ -85,6 +86,7 @@ public class FindSpotActivity extends AppCompatActivity {
                                 intent.putExtra("innandyra", indr);
                                 intent.putExtra("dropp", drp);
                                 intent.putExtra("upplyst", upl);
+                                intent.putExtra("checkedIn", cin);
 
 
                                 FindSpotActivity.this.startActivity(intent);
