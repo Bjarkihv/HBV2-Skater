@@ -1,9 +1,13 @@
 package isbhv2.hi.notandi.skater;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.icu.text.IDNA;
+import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +22,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONException;
@@ -56,6 +61,15 @@ public class InfoMapsActivity extends FragmentActivity implements OnMapReadyCall
 
         mMap = googleMap;
 
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                mMap.setMyLocationEnabled(true);
+            }
+        }
+        else{
+            mMap.setMyLocationEnabled(true);
+        }
+
         Intent intent = getIntent();
         final String nafn = intent.getStringExtra("nafn");
         final String lysing = intent.getStringExtra("lysing");
@@ -72,7 +86,11 @@ public class InfoMapsActivity extends FragmentActivity implements OnMapReadyCall
 
         LatLng spot = new LatLng(dLat, dLng);
         mMap.addMarker(new MarkerOptions().position(spot).title(nafn));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(spot));
+        LatLngBounds findSpot = new LatLngBounds( spot, spot);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(findSpot.getCenter(), 15));
+        //mMap.moveCamera(CameraUpdateFactory.zoomBy(10));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(spot));
+
         checkInLabel.setText("");
         if(!currentUser.spot.equals("None")) {
             bCheckIn.setEnabled(false);
