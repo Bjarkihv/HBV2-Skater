@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.icu.text.IDNA;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -15,61 +16,98 @@ import isbhv2.hi.notandi.skater.InfoMapsActivity;
 import isbhv2.hi.notandi.skater.R;
 
 public class ResultsActivity extends AppCompatActivity {
+    String resultsString;
+    String nafn;
+    String lysing;
+    String lat;
+    String lng;
+    String troppur;
+    String handrid;
+    String rampur;
+    String vetur;
+    String innandyra;
+    String dropp;
+    String upplyst;
+    String checkedIn;
+    String finFlokkar;
+
+    String nafnIndex[] = new String[100];
+    String lysingIndex[] = new String[100];
+    String flokkarIndex[] = new String[100];
+    String latIndex[] = new String[100];
+    String lngIndex[] = new String[100];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-
-        //final ListView results = (ListView) findViewById(R.id.resultList);
-
         Intent intent = getIntent();
-        final String nafn = intent.getStringExtra("nafn");
-        final String lysing = intent.getStringExtra("lysing");
-        final String lat = intent.getStringExtra("lat");
-        final String lng = intent.getStringExtra("lng");
-        final String troppur = intent.getStringExtra("troppur");
-        final String handrid = intent.getStringExtra("handrid");
-        final String rampur = intent.getStringExtra("rampur");
-        final String vetur = intent.getStringExtra("vetur");
-        final String innandyra = intent.getStringExtra("innandyra");
-        final String dropp = intent.getStringExtra("dropp");
-        final String upplyst = intent.getStringExtra("upplyst");
-        final String checkedIn = intent.getStringExtra("checkedIn");
+        int len = intent.getIntExtra("length", 0)-1;
+        //final ListView results = (ListView) findViewById(R.id.resultList);
+        String resultsList[] = new String[len];
 
-        String flokkar = "- ";
-        if(troppur.equals("true")) flokkar += "tröppur - ";
-        if(handrid.equals("true")) flokkar += "handrið - ";
-        if(rampur.equals("true")) flokkar += "rampur - ";
-        if(vetur.equals("true")) flokkar += "vetrarvænt - ";
-        if(innandyra.equals("true")) flokkar += "innandyra - ";
-        if(dropp.equals("true")) flokkar += "drop - ";
-        if(upplyst.equals("true")) flokkar += "upplýst - ";
 
-        final String finFlokkar = flokkar;
-        String checkedInString = checkedIn + "notendur tékkaðir inn.";
-
-        if(checkedIn.equals("0"))
-            checkedInString = "Enginn notandi tékkaður inn.";
-        if(checkedIn.equals("1"))
-            checkedInString = "1 notandi tékkaður inn.";
-
+        Log.d("Len ", Integer.toString(len));
         ListView results;
-        String resultsList[] = {nafn + ":\n" + lysing + "\n" + "Til staðar: " + finFlokkar + "\n" + checkedInString};
 
+        for(int i = 0; i < len; i++){
+
+            nafn = intent.getStringExtra("nafn"+Integer.toString(i));
+            lysing = intent.getStringExtra("lysing"+Integer.toString(i));
+            lat = intent.getStringExtra("lat"+Integer.toString(i));
+            lng = intent.getStringExtra("lng"+Integer.toString(i));
+            troppur = intent.getStringExtra("troppur"+Integer.toString(i));
+            handrid = intent.getStringExtra("handrid"+Integer.toString(i));
+            rampur = intent.getStringExtra("rampur"+Integer.toString(i));
+            vetur = intent.getStringExtra("vetur"+Integer.toString(i));
+            innandyra = intent.getStringExtra("innandyra"+Integer.toString(i));
+            dropp = intent.getStringExtra("dropp"+Integer.toString(i));
+            upplyst = intent.getStringExtra("upplyst"+Integer.toString(i));
+            checkedIn = intent.getStringExtra("checkedIn"+Integer.toString(i));
+
+            String flokkar = "- ";
+            if (troppur.equals("true")) flokkar += "tröppur - ";
+            if (handrid.equals("true")) flokkar += "handrið - ";
+            if (rampur.equals("true")) flokkar += "rampur - ";
+            if (vetur.equals("true")) flokkar += "vetrarvænt - ";
+            if (innandyra.equals("true")) flokkar += "innandyra - ";
+            if (dropp.equals("true")) flokkar += "drop - ";
+            if (upplyst.equals("true")) flokkar += "upplýst - ";
+
+            finFlokkar = flokkar;
+            String checkedInString = checkedIn + "notendur tékkaðir inn.";
+
+            nafnIndex[i] = nafn;
+            lysingIndex[i] = lysing;
+            flokkarIndex[i] = finFlokkar;
+            latIndex[i] = lat;
+            lngIndex[i] = lng;
+
+            if (checkedIn.equals("0"))
+                checkedInString = "Enginn notandi tékkaður inn.";
+            if (checkedIn.equals("1"))
+                checkedInString = "1 notandi tékkaður inn.";
+
+            resultsString = nafn + ":\n" + lysing + "\n" + "Til staðar: " + finFlokkar + "\n" + checkedInString;
+            resultsList[i] = resultsString;
+            Log.d("ResListi: ", "i: " + i + " ->" + resultsList[0] + " " + resultsList[1] + " " + resultsList[2] + " " + resultsList[3]);
+    }
+        Log.d("Cont: ", Integer.toString(resultsList.length));
         results = (ListView) findViewById(R.id.resultList);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_list_view, R.id.textView, resultsList);
         results.setAdapter(arrayAdapter);
+
 
         results.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(android.widget.AdapterView<?> parent, View view, int position, long id) {
                 Intent intent2 = new Intent(ResultsActivity.this, InfoMapsActivity.class);
-                intent2.putExtra("nafn", nafn);
-                intent2.putExtra("lysing", lysing);
-                intent2.putExtra("flokkar", finFlokkar);
-                intent2.putExtra("lat", lat);
-                intent2.putExtra("lng", lng);
+                intent2.putExtra("nafn", nafnIndex[(int)id]);
+                intent2.putExtra("lysing", lysingIndex[(int)id]);
+                intent2.putExtra("flokkar", flokkarIndex[(int)id]);
+                intent2.putExtra("lat", latIndex[(int)id]);
+                intent2.putExtra("lng", lngIndex[(int)id]);
                 ResultsActivity.this.startActivity(intent2);
             }
         });

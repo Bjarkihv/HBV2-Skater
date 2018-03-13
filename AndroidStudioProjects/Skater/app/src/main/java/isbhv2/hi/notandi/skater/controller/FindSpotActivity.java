@@ -14,6 +14,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -59,34 +60,62 @@ public class FindSpotActivity extends AppCompatActivity {
 
                             if(success){
                                 Intent intent = new Intent(FindSpotActivity.this, ResultsActivity.class);
+                                /*
                                 Log.d("myTag", jsonResponse.toString());
+                                Log.d("myTag", jsonResponse.getString("0"));
+                                Log.d("myTag", jsonResponse.getJSONArray("0").toString());
+                                JSONArray bla = jsonResponse.getJSONArray("0");
+                                Log.d("myTag", bla.getString(1));
+                                */
 
-                                Log.d("myTag", "Success");
-                                String nfn = jsonResponse.getString("nafn");
-                                String lsng = jsonResponse.getString("lysing");
-                                String lat = jsonResponse.getString("lat");
-                                String lng = jsonResponse.getString("lng");
-                                String tr = jsonResponse.getString("troppur");
-                                String hr = jsonResponse.getString("handrid");
-                                String rmp = jsonResponse.getString("rampur");
-                                String vtr = jsonResponse.getString("vetur");
-                                String indr = jsonResponse.getString("innandyra");
-                                String drp = jsonResponse.getString("dropp");
-                                String upl = jsonResponse.getString("upplyst");
-                                String cin = jsonResponse.getString("checkedIn");
+                                String nfn;
+                                String lsng;
+                                String lat;
+                                String lng;
+                                String tr;
+                                String hr;
+                                String rmp;
+                                String vtr;
+                                String indr;
+                                String drp;
+                                String upl;
+                                String cin;
 
-                                intent.putExtra("nafn", nfn);
-                                intent.putExtra("lysing", lsng);
-                                intent.putExtra("lat", lat);
-                                intent.putExtra("lng", lng);
-                                intent.putExtra("troppur", tr);
-                                intent.putExtra("handrid", hr);
-                                intent.putExtra("rampur", rmp);
-                                intent.putExtra("vetur", vtr);
-                                intent.putExtra("innandyra", indr);
-                                intent.putExtra("dropp", drp);
-                                intent.putExtra("upplyst", upl);
-                                intent.putExtra("checkedIn", cin);
+                                for(int i = 0; i < jsonResponse.length()-1; i++){
+                                    JSONArray jsonArray = jsonResponse.getJSONArray(Integer.toString(i));
+                                    Log.d("jsonArray: ", jsonArray.toString());
+
+                                    nfn = jsonArray.getString(2);
+                                    lsng = jsonArray.getString(3);
+                                    lat = jsonArray.getString(0);
+                                    lng = jsonArray.getString(1);
+                                    tr = jsonArray.getString(4);
+                                    hr = jsonArray.getString(5);
+                                    rmp = jsonArray.getString(6);
+                                    vtr = jsonArray.getString(7);
+                                    indr = jsonArray.getString(8);
+                                    drp = jsonArray.getString(9);
+                                    upl = jsonArray.getString(10);
+                                    cin = jsonArray.getString(11);
+
+                                    Log.d("Allt:", nfn + " " + lsng + " " + lat + " " + lng + " " + tr + " " + hr
+                                    + " " + hr + " " + rmp + " " + vtr + " " + indr + " " + drp + " " + upl + " " + cin);
+                                    Log.d("Intentnafn, dæmi:", "nafn"+Integer.toString(i));
+
+                                    intent.putExtra("nafn"+Integer.toString(i), nfn);
+                                    intent.putExtra("lysing"+Integer.toString(i), lsng);
+                                    intent.putExtra("lat"+Integer.toString(i), lat);
+                                    intent.putExtra("lng"+Integer.toString(i), lng);
+                                    intent.putExtra("troppur"+Integer.toString(i), tr);
+                                    intent.putExtra("handrid"+Integer.toString(i), hr);
+                                    intent.putExtra("rampur"+Integer.toString(i), rmp);
+                                    intent.putExtra("vetur"+Integer.toString(i), vtr);
+                                    intent.putExtra("innandyra"+Integer.toString(i), indr);
+                                    intent.putExtra("dropp"+Integer.toString(i), drp);
+                                    intent.putExtra("upplyst"+Integer.toString(i), upl);
+                                    intent.putExtra("checkedIn"+Integer.toString(i), cin);
+                                }
+                                intent.putExtra("length", jsonResponse.length());
 
 
                                 FindSpotActivity.this.startActivity(intent);
