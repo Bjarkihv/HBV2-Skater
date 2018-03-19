@@ -128,7 +128,7 @@ public class InfoMapsActivity extends FragmentActivity implements OnMapReadyCall
 
                     }
                 };
-
+                Log.d("nafn á nafn: ", nafn);
                 CheckInOutRequest checkInOutRequest = new CheckInOutRequest(nafn, currentUser.username, "false", responseListener);
                 RequestQueue queue = Volley.newRequestQueue(InfoMapsActivity.this);
                 queue.add(checkInOutRequest);

@@ -31,6 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".controller.FindPeople2Activity" />
+        <activity android:name=".controller.FindPeopleActivity" />
+        <activity android:name=".controller.ListViewActivity" />
         <activity android:name=".controller.RegisterActivity" />
         <activity android:name=".controller.UserAreaActivity" />
         <activity android:name=".controller.AddSpotActivity" />
