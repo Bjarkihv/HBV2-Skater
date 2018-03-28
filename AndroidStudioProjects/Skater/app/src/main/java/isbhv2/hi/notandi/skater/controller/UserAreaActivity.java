@@ -127,7 +127,7 @@ public class UserAreaActivity extends AppCompatActivity {
 
     private void launchActivity3() {
 
-        Intent intent = new Intent(this, FindPeople2Activity.class);
+        Intent intent = new Intent(this, FindPeopleListActivity.class);
         startActivity(intent);
     }
 }
