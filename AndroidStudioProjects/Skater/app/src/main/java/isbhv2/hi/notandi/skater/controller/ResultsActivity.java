@@ -1,16 +1,12 @@
 package isbhv2.hi.notandi.skater.controller;
 
 import android.content.Intent;
-import android.icu.text.IDNA;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import java.util.List;
 
 import isbhv2.hi.notandi.skater.InfoMapsActivity;
 import isbhv2.hi.notandi.skater.R;
@@ -43,7 +39,6 @@ public class ResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_results);
         Intent intent = getIntent();
         int len = intent.getIntExtra("length", 0)-1;
-        //final ListView results = (ListView) findViewById(R.id.resultList);
         String resultsList[] = new String[len];
 
 
@@ -75,7 +70,7 @@ public class ResultsActivity extends AppCompatActivity {
             if (upplyst.equals("true")) flokkar += "upplýst - ";
 
             finFlokkar = flokkar;
-            String checkedInString = checkedIn + "notendur tékkaðir inn.";
+            String checkedInString = checkedIn + " notendur tékkaðir inn.";
 
             nafnIndex[i] = nafn;
             lysingIndex[i] = lysing;

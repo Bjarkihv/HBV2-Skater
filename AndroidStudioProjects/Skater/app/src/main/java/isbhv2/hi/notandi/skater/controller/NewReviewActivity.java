@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -17,26 +19,33 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import isbhv2.hi.notandi.skater.R;
+import isbhv2.hi.notandi.skater.service.NewReviewRequest;
 import isbhv2.hi.notandi.skater.service.RegisterRequest;
 
-public class RegisterActivity extends AppCompatActivity {
+public class NewReviewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register); // Hvaða XML skrá þetta activity notar
+        setContentView(R.layout.activity_new_review);
 
-        final EditText regEmail = (EditText) findViewById(R.id.inputEmail);
-        final EditText regUsername = (EditText) findViewById(R.id.inputName);
-        final EditText regPassword = (EditText) findViewById(R.id.inputPassword);
-        final Button bRegister = (Button) findViewById(R.id.registerButton);
+        final Intent intent = getIntent();
 
-        bRegister.setOnClickListener(new View.OnClickListener() {
+        final RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        final EditText reviewTitle = (EditText) findViewById(R.id.reviewTitle);
+        final EditText reviewText = (EditText) findViewById(R.id.reviewText);
+        final TextView reviewFor = (TextView) findViewById(R.id.reviewFor);
+        final Button bSend = (Button) findViewById(R.id.bSend);
+
+        reviewFor.setText("Umsögn fyrir: " + intent.getStringExtra("nafn"));
+
+        bSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String username = regUsername.getText().toString();
-                final String email = regEmail.getText().toString();
-                final String password = regPassword.getText().toString();
+                final double rat = ratingBar.getRating();
+                final String rating = Double.toString(rat);
+                final String title = reviewTitle.getText().toString();
+                final String review = reviewText.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -50,11 +59,11 @@ public class RegisterActivity extends AppCompatActivity {
                             // Ef þetta tekst þá sendum við notanda aftur á login síðuna.
                             if(success){
                                 Log.d("myTag", "Intent keyrt");
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                RegisterActivity.this.startActivity(intent);
+                                Intent intent = new Intent(NewReviewActivity.this, UserAreaActivity.class);
+                                NewReviewActivity.this.startActivity(intent);
                             }else{
-                                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                builder.setMessage("Nýskráning tókst ekki")
+                                AlertDialog.Builder builder = new AlertDialog.Builder(NewReviewActivity.this);
+                                builder.setMessage("Skráning umsagnar tókst ekki")
                                         .setNegativeButton("Reyna aftur", null)
                                         .create()
                                         .show();
@@ -68,9 +77,9 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 };
 
-                RegisterRequest registerRequest = new RegisterRequest(username, email, password, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                queue.add(registerRequest);
+                NewReviewRequest newReviewRequest = new NewReviewRequest(intent.getStringExtra("nafn"), rating, title, review, LoginActivity.currentUser.getUsername(), responseListener);
+                RequestQueue queue = Volley.newRequestQueue(NewReviewActivity.this);
+                queue.add(newReviewRequest);
             }
         });
     }

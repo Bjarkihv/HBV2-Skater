@@ -1,5 +1,5 @@
 <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="700dp"
+    android:layout_height="1200dp"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -56,9 +56,28 @@
         android:id="@+id/checkInLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/bCheckIn"
-        android:layout_toEndOf="@+id/spotName"
-        android:layout_toRightOf="@+id/spotName"
+        android:layout_below="@+id/bCheckIn"
+        android:layout_centerHorizontal="true"
         android:text="Þú ert nú þegar skráð/ur inn á stað." />
+
+    <Button
+        android:id="@+id/bReviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkInLabel"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/spotCats"
+        android:layout_toRightOf="@+id/spotCats"
+        android:text="Skoða umsagnir" />
+
+    <Button
+        android:id="@+id/bWriteRev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bReviews"
+        android:layout_alignBottom="@+id/bReviews"
+        android:layout_toLeftOf="@+id/spotCats"
+        android:layout_toStartOf="@+id/spotCats"
+        android:text="Skrifa umsögn" />
 
 </RelativeLayout>

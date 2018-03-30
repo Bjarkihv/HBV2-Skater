@@ -25,13 +25,20 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import isbhv2.hi.notandi.skater.controller.FindSpotActivity;
 import isbhv2.hi.notandi.skater.controller.LoginActivity;
+import isbhv2.hi.notandi.skater.controller.NewReviewActivity;
+import isbhv2.hi.notandi.skater.controller.ResultsActivity;
+import isbhv2.hi.notandi.skater.controller.ReviewsActivity;
 import isbhv2.hi.notandi.skater.controller.UserAreaActivity;
 import isbhv2.hi.notandi.skater.service.CheckInOutRequest;
+import isbhv2.hi.notandi.skater.service.GetReviewsRequest;
 import isbhv2.hi.notandi.skater.service.LoginRequest;
+import isbhv2.hi.notandi.skater.service.SearchRequest;
 
 import static isbhv2.hi.notandi.skater.controller.LoginActivity.currentUser;
 
@@ -58,6 +65,8 @@ public class InfoMapsActivity extends FragmentActivity implements OnMapReadyCall
         final TextView spotCats = (TextView) findViewById(R.id.spotCats);
         final TextView checkInLabel = (TextView) findViewById(R.id.checkInLabel);
         final Button bCheckIn = (Button) findViewById(R.id.bCheckIn);
+        final Button writeRev = (Button) findViewById(R.id.bWriteRev);
+        final Button getRevs = (Button) findViewById(R.id.bReviews);
 
         mMap = googleMap;
 
@@ -96,6 +105,81 @@ public class InfoMapsActivity extends FragmentActivity implements OnMapReadyCall
             bCheckIn.setEnabled(false);
             checkInLabel.setText("Þú ert nú þegar skráð/ur inn á stað.");
         }
+
+
+
+        writeRev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent reviewIntent = new Intent(InfoMapsActivity.this, NewReviewActivity.class);
+                reviewIntent.putExtra("nafn", nafn);
+                startActivity(reviewIntent);
+            }
+        });
+
+        getRevs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            boolean success = jsonResponse.getBoolean("success");
+
+                            if(success){
+                                Intent intent = new Intent(InfoMapsActivity.this, ReviewsActivity.class);
+                                Log.d("jsonArray: ", jsonResponse.toString());
+                                String rat;
+                                String tit;
+                                String rev;
+                                String usr;
+
+
+                                for(int i = 0; i < jsonResponse.length()-1; i++){
+                                    JSONArray jsonArray = jsonResponse.getJSONArray(Integer.toString(i));
+                                    Log.d("jsonArray: ", jsonArray.toString());
+
+                                    rat = jsonArray.getString(0);
+                                    tit = jsonArray.getString(1);
+                                    rev = jsonArray.getString(2);
+                                    usr = jsonArray.getString(3);
+
+                                    Log.d("Allt:", rev + " " + tit + " " + rev + " " + usr );
+
+                                    intent.putExtra("rating"+Integer.toString(i), rat);
+                                    intent.putExtra("title"+Integer.toString(i), tit);
+                                    intent.putExtra("review"+Integer.toString(i), rev);
+                                    intent.putExtra("user"+Integer.toString(i), usr);
+                                }
+                                intent.putExtra("length", jsonResponse.length());
+
+
+                                InfoMapsActivity.this.startActivity(intent);
+
+                            }else{
+                                AlertDialog.Builder builder = new AlertDialog.Builder(InfoMapsActivity.this);
+                                builder.setMessage("Engar niðurstöður fundust")
+                                        .setNegativeButton("Reyna aftur", null)
+                                        .create()
+                                        .show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                };
+
+                GetReviewsRequest getReviewsRequest = new GetReviewsRequest(nafn, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(InfoMapsActivity.this);
+                queue.add(getReviewsRequest);
+            }
+        });
+
+
 
         bCheckIn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -60,13 +60,6 @@ public class FindSpotActivity extends AppCompatActivity {
 
                             if(success){
                                 Intent intent = new Intent(FindSpotActivity.this, ResultsActivity.class);
-                                /*
-                                Log.d("myTag", jsonResponse.toString());
-                                Log.d("myTag", jsonResponse.getString("0"));
-                                Log.d("myTag", jsonResponse.getJSONArray("0").toString());
-                                JSONArray bla = jsonResponse.getJSONArray("0");
-                                Log.d("myTag", bla.getString(1));
-                                */
 
                                 String nfn;
                                 String lsng;
