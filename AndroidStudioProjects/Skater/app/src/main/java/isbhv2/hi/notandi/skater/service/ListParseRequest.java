@@ -42,6 +42,7 @@ public class ListParseRequest extends AsyncTask<Void,Integer,Integer> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        super.onPreExecute();
 
         pd = new ProgressDialog(c);
         pd.setTitle("Parser");

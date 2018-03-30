@@ -45,10 +45,12 @@ public class ResultsActivity extends AppCompatActivity {
         int len = intent.getIntExtra("length", 0)-1;
         //final ListView results = (ListView) findViewById(R.id.resultList);
         String resultsList[] = new String[len];
+        String testList[] = new String[len];
 
 
         Log.d("Len ", Integer.toString(len));
         ListView results;
+        //len += 1;
 
         for(int i = 0; i < len; i++){
 
@@ -90,7 +92,9 @@ public class ResultsActivity extends AppCompatActivity {
 
             resultsString = nafn + ":\n" + lysing + "\n" + "Til staðar: " + finFlokkar + "\n" + checkedInString;
             resultsList[i] = resultsString;
-            Log.d("ResListi: ", "i: " + i + " ->" + resultsList[0] + " " + resultsList[1] + " " + resultsList[2] + " " + resultsList[3]);
+            //Log.d("ResListi: ", "i: " + i + " ->" + resultsList[0] + " " + resultsList[1] + " " + resultsList[2] + " " + resultsList[3]);
+
+
     }
         Log.d("Cont: ", Integer.toString(resultsList.length));
         results = (ListView) findViewById(R.id.resultList);
