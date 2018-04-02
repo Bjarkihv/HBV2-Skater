@@ -15,7 +15,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import isbhv2.hi.notandi.skater.InfoMapsActivity;
 import isbhv2.hi.notandi.skater.MapsActivity;
 import isbhv2.hi.notandi.skater.R;
 import isbhv2.hi.notandi.skater.service.CheckInOutRequest;
@@ -27,6 +26,7 @@ public class UserAreaActivity extends AppCompatActivity {
     private Button findSpotLaunch;
     private Button addSpotLaunch;
     private Button checkOutButton;
+    private Button findPeopleLaunch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +34,7 @@ public class UserAreaActivity extends AppCompatActivity {
         addSpotLaunch = (Button) findViewById(R.id.button);
         findSpotLaunch = (Button) findViewById(R.id.button2);
         checkOutButton = (Button) findViewById(R.id.button3);
+        findPeopleLaunch = (Button) findViewById(R.id.button4);
 
         findSpotLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +48,14 @@ public class UserAreaActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 launchActivity2();
+            }
+        });
+
+        findPeopleLaunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                launchActivity3();
             }
         });
 
@@ -113,6 +122,12 @@ public class UserAreaActivity extends AppCompatActivity {
     private void launchActivity2() {
 
         Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+
+    private void launchActivity3() {
+
+        Intent intent = new Intent(this, FindPeopleListActivity.class);
         startActivity(intent);
     }
 }

@@ -30,12 +30,14 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -181,19 +183,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         // Þegar kortið er tilbúið til notkunar
         mMap = googleMap;
+
         //mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -243,37 +237,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.addMarker(markerOptions);
             }
         });
-    }
-/*
-    public void onClick(View v)
-    {
-        if(v.getId() == R.id.B_Search){
-            EditText tf_location = (EditText) findViewById(R.id.nafnText);
-            String location = tf_location.getText().toString();
-            List<Address> addressList = null;
-            MarkerOptions mo = new MarkerOptions();
 
-            if(!location.equals("")){
-                Geocoder geocoder = new Geocoder(this);
-                try {
-                    addressList = geocoder.getFromLocationName(location, 5);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                for(int i = 0; i < addressList.size(); i++){
-                    Address myAdress = addressList.get(i);
-                    LatLng latlng = new LatLng(myAdress.getLatitude(), myAdress.getLongitude());
-                    mo.position(latlng);
-                    mo.title("Leitarniðurstaða");
-                    mMap.addMarker(mo);
-                    // Fara með myndavél á síðustu leitarniðurstöðuna
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(latlng));
-                }
-            }
-        }
+        LatLng goTo1 = new LatLng(64.137, -21.9179);
+        LatLng goTo2 = new LatLng(64.146, -21.9248);
+        LatLngBounds findSpot = new LatLngBounds( goTo1, goTo2 );
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(goTo1, 12));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(goTo1));
+        //mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
     }
-*/
+
 
     protected synchronized void buildGoogleApiClient(){
         client = new GoogleApiClient.Builder(this)
@@ -305,13 +277,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         currentLocationMarker = mMap.addMarker(markerOptions);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomBy(10));
-
         if(client != null){
             LocationServices.FusedLocationApi.removeLocationUpdates(client, this);
         }
-
     }
 
     @Override
