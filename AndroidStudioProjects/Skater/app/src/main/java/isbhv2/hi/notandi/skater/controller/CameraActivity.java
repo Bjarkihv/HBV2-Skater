@@ -58,7 +58,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
-    File photoFile;
+    File photoFile = new File("Users\\Notandi\\AndroidStudioProjects\\HBV2-Skater");
 
     @Override
     public void onClick(View v) {
@@ -80,25 +80,29 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            imageView.setImageBitmap(photo);
+        if(resultCode != RESULT_CANCELED) {
+            if (requestCode == CAMERA_REQUEST) {
+                if (data != null) {
+                    Bitmap photo = (Bitmap) data.getExtras().get("data");
+                    imageView.setImageBitmap(photo);
 
-            Map config = new HashMap();
-            config.put("cloud_name", "hbv2skater");
-            config.put("api_key","459114518896268");
-            config.put("api_secret","caVLsNO_5Amx89RBTroN2MUZP-w");
-            //MediaManager.init(this, config);
+                    Map config = new HashMap();
+                    config.put("cloud_name", "hbv2skater");
+                    config.put("api_key", "459114518896268");
+                    config.put("api_secret", "caVLsNO_5Amx89RBTroN2MUZP-w");
+                    //MediaManager.init(this, config);
 
-            Cloudinary cloudinary = new Cloudinary(config);
-            try {
-                cloudinary.uploader().upload(photoFile.getAbsolutePath(), ObjectUtils.emptyMap());
-            } catch (IOException e) {
-                e.printStackTrace();
+                    Cloudinary cloudinary = new Cloudinary(config);
+                    try {
+                        cloudinary.uploader().upload(photoFile.getAbsolutePath(), ObjectUtils.emptyMap());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                } else if (resultCode == RESULT_CANCELED) {
+                    //gera ekkert og hætta
+                }
             }
-
-        } else if (resultCode == RESULT_CANCELED){
-            //gera ekkert og hætta
         }
 
     }
