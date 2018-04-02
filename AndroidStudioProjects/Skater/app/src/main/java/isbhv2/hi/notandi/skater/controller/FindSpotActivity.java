@@ -178,9 +178,8 @@ public class FindSpotActivity extends AppCompatActivity {
                             Intent intent = new Intent(FindSpotActivity.this, ResultsActivity.class);
 
                             if(success){
-<<<<<<< HEAD
-                                Intent intent = new Intent(FindSpotActivity.this, ResultsActivity.class);
-=======
+                                //Intent intent = new Intent(FindSpotActivity.this, ResultsActivity.class);
+
                                 /*
                                 Log.d("myTag", jsonResponse.toString());
                                 Log.d("myTag", jsonResponse.getString("0"));
@@ -188,7 +187,7 @@ public class FindSpotActivity extends AppCompatActivity {
                                 JSONArray bla = jsonResponse.getJSONArray("0");
                                 Log.d("myTag", bla.getString(1));
                                 */
->>>>>>> 3d854893177656bbbdfc4c4900864045027da32b
+
 
                                 String nfn;
                                 String lsng;

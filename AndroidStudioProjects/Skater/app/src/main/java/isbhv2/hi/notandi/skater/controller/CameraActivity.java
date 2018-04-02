@@ -1,4 +1,4 @@
-package isbhv2.hi.notandi.skater.service;
+package isbhv2.hi.notandi.skater.controller;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -88,6 +88,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             config.put("cloud_name", "hbv2skater");
             config.put("api_key","459114518896268");
             config.put("api_secret","caVLsNO_5Amx89RBTroN2MUZP-w");
+            //MediaManager.init(this, config);
+
             Cloudinary cloudinary = new Cloudinary(config);
             try {
                 cloudinary.uploader().upload(photoFile.getAbsolutePath(), ObjectUtils.emptyMap());
