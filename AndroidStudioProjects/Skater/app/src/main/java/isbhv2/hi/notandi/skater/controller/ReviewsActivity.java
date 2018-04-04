@@ -1,5 +1,10 @@
 package isbhv2.hi.notandi.skater.controller;
 
+/*
+Activity sem sér um að ná í allar umsagnir um stað í gegnum
+GetReviewsRequest, og birtir þær síðan til notanda.
+ */
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

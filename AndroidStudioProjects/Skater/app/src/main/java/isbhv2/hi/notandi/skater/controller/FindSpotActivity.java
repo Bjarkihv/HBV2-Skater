@@ -1,5 +1,11 @@
 package isbhv2.hi.notandi.skater.controller;
 
+/*
+Activity sem sér um að senda upplýsingar frá notanda
+í FindSpotService, sem sér svo um að leita að stað
+í gagnagrunninum.
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -19,7 +25,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import isbhv2.hi.notandi.skater.InfoMapsActivity;
 import isbhv2.hi.notandi.skater.R;
 import isbhv2.hi.notandi.skater.service.SearchRequest;
 
@@ -175,19 +180,9 @@ public class FindSpotActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
-                            Intent intent = new Intent(FindSpotActivity.this, ResultsActivity.class);
 
                             if(success){
-                                //Intent intent = new Intent(FindSpotActivity.this, ResultsActivity.class);
-
-                                /*
-                                Log.d("myTag", jsonResponse.toString());
-                                Log.d("myTag", jsonResponse.getString("0"));
-                                Log.d("myTag", jsonResponse.getJSONArray("0").toString());
-                                JSONArray bla = jsonResponse.getJSONArray("0");
-                                Log.d("myTag", bla.getString(1));
-                                */
-
+                                Intent intent = new Intent(FindSpotActivity.this, ResultsActivity.class);
 
                                 String nfn;
                                 String lsng;

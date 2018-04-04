@@ -24,6 +24,24 @@ import isbhv2.hi.notandi.skater.service.RegisterRequest;
 
 public class NewReviewActivity extends AppCompatActivity {
 
+    /* TODO
+    * Gera verification snyrtilegra og
+    * error messages skýrari.
+    */
+    public boolean verifyTitle(String s){
+        if(s.length() < 20)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean verifyReview(String s){
+        if(s.length() < 200)
+            return true;
+        else
+            return false;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +75,7 @@ public class NewReviewActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
 
                             // Ef þetta tekst þá sendum við notanda aftur á login síðuna.
-                            if(success){
+                            if(success && verifyTitle(title) && verifyReview(review)){
                                 Log.d("myTag", "Intent keyrt");
                                 Intent intent = new Intent(NewReviewActivity.this, UserAreaActivity.class);
                                 NewReviewActivity.this.startActivity(intent);
