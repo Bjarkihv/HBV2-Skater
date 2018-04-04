@@ -1,5 +1,11 @@
 package isbhv2.hi.notandi.skater.controller;
 
+/*
+Activity sem sér um að senda upplýsingar frá notanda
+í LoginRequest, sem sér svo um að tékka á login credentials
+í gagnagrunni og senda svar til baka.
+ */
+
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;

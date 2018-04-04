@@ -1,5 +1,11 @@
 package isbhv2.hi.notandi.skater;
 
+/*
+Activity sem sér um að birta upplýsingar um stað sem notandi hefur valið.
+Notar GoogleMaps til að sýna staðinn á korti og CheckInOutRequest til að
+tékka notanda inn á staðinn ef hann kýs að gera það.
+ */
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;

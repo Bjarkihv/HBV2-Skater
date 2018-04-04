@@ -1,5 +1,10 @@
 package isbhv2.hi.notandi.skater.service;
 
+/*
+Request klasi sem sér um að hafa samskipti við user töfluna
+þegar setja á inn nýjan user í gagnagrunninn.
+ */
+
 import android.util.Log;
 
 import com.android.volley.Response;

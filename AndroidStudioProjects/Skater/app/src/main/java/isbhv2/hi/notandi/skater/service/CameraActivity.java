@@ -172,7 +172,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
-
         //Save a file: path for use with ACTION_VIEW intents
         return image;
     }

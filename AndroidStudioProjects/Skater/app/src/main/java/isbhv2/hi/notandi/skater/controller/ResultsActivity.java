@@ -1,5 +1,12 @@
 package isbhv2.hi.notandi.skater.controller;
 
+
+/*
+Activity sem sér um að nota skilyrði notanda til að ná í upplýsingar
+frá SearchRequest, og birtir svo staði til notenda sem passa við
+skilyrðin sem notandinn setur inn.
+ */
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

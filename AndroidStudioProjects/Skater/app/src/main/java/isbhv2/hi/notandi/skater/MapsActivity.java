@@ -1,5 +1,12 @@
 package isbhv2.hi.notandi.skater;
 
+/*
+Activity sem sér um að senda upplýsingar frá notanda
+í newSpotRequest, sem setur svo nýjan spot í gagnagrunninn.
+Hér er  líka GoogleMaps virkni, þar sem notandi notar GM til
+að merka staðinn inn á kort.
+ */
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -62,6 +69,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker currentLocationMarker;
     public static final int REQUEST_LOCATION_CODE = 99;
 
+
+    /* TODO
+    * Gera verification snyrtilegra og
+    * gera svo error messages skýrari.
+    */
+    public boolean verifySpotName(String s){
+        if(s.length() < 20)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean verifyDescription(String s){
+        if(s.length() < 200)
+            return true;
+        else
+            return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

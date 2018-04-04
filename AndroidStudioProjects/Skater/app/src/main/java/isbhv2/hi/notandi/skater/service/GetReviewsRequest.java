@@ -1,5 +1,10 @@
 package isbhv2.hi.notandi.skater.service;
 
+/*
+Request klasi sem sér um að hafa samskipti við reviews töfluna
+til að ná í reviews fyrir stað.
+ */
+
 import android.util.Log;
 
 import com.android.volley.Response;

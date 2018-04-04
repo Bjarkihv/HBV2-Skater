@@ -1,5 +1,10 @@
 package isbhv2.hi.notandi.skater.service;
 
+/*
+Request klasi sem sér um að hafa samskipti við user töfluna í
+gagnagrunninum til að sjá hvort notandi sé skráður inn á stað.
+ */
+
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 

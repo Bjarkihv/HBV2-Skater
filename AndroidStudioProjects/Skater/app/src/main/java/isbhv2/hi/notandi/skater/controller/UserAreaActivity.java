@@ -1,5 +1,12 @@
 package isbhv2.hi.notandi.skater.controller;
 
+/*
+Activity sem sér um að birta notendasvæðið þar sem notandi
+velur hvað hann vill gera í forritinu. Þetta activity birtir
+líka upplýsingar um hvort notandi sér skráður inn á einhvern
+stað.
+ */
+
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
