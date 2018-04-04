@@ -1,5 +1,9 @@
 package isbhv2.hi.notandi.skater.model;
 
+/*
+Módelklasi fyrir innskráðan notanda.
+ */
+
 import android.graphics.Point;
 
 /**
