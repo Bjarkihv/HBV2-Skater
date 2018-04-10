@@ -8,9 +8,12 @@ stað.
  */
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
@@ -30,18 +33,18 @@ import static isbhv2.hi.notandi.skater.controller.LoginActivity.currentUser;
 
 public class UserAreaActivity extends AppCompatActivity {
 
-    private Button findSpotLaunch;
-    private Button addSpotLaunch;
-    private Button checkOutButton;
-    private Button findPeopleLaunch;
+    private LinearLayout findSpotLaunch;
+    private LinearLayout addSpotLaunch;
+    private LinearLayout checkOutButton;
+    private LinearLayout findPeopleLaunch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_area);
-        addSpotLaunch = (Button) findViewById(R.id.button);
-        findSpotLaunch = (Button) findViewById(R.id.button2);
-        checkOutButton = (Button) findViewById(R.id.button3);
-        findPeopleLaunch = (Button) findViewById(R.id.button4);
+        addSpotLaunch = (LinearLayout) findViewById(R.id.button);
+        findSpotLaunch = (LinearLayout) findViewById(R.id.button2);
+        checkOutButton = (LinearLayout) findViewById(R.id.button3);
+        findPeopleLaunch = (LinearLayout) findViewById(R.id.button4);
 
         findSpotLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,16 +107,22 @@ public class UserAreaActivity extends AppCompatActivity {
         });
 
         final TextView nsUsername = (TextView) findViewById(R.id.nsUserLabel);
-        final TextView nsWelcome = (TextView) findViewById(R.id.nsLabel);
+        final TextView spotLabel = (TextView) findViewById(R.id.spotLabel);
         final TextView checkInLabel = (TextView) findViewById(R.id.checkInLabel);
+        final ImageButton checkInImage = (ImageButton) findViewById(R.id.checkInImg);
 
         if(currentUser.getSpot().equals("None")) {
-            checkInLabel.setText("Þú ert ekki tékkaður/tékkuð inn á neinn stað");
+            spotLabel.setText("Þú ert ekki tékkaður/tékkuð inn á neinn stað");
+            checkOutButton.setBackgroundColor(Color.GRAY);
             checkOutButton.setEnabled(false);
+            checkInImage.setImageResource(R.drawable.ic_action_cross);
         }
         else {
-            checkInLabel.setText("Þú ert að bretta á: " + currentUser.spot);
+            checkInLabel.setText("Þú ert að bretta á:" + currentUser.spot);
+            spotLabel.setText("Smelltu hérna til að skrá þig út");
+            checkOutButton.setBackgroundColor(Color.WHITE);
             checkOutButton.setEnabled(true);
+            checkInImage.setImageResource(R.drawable.ic_action_check);
         }
 
         String username = currentUser.username;

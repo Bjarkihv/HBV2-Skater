@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context="isbhv2.hi.notandi.skater.controller.NewReviewActivity">
 
     <Button
@@ -34,6 +35,7 @@
         android:ems="10"
         android:hint="Umsögn"
         android:inputType="textMultiLine"
+        android:textColorLink="@color/backgroundcolor"
         app:layout_constraintBottom_toTopOf="@+id/bSend"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -47,6 +49,7 @@
         android:ems="10"
         android:hint="Titill"
         android:inputType="textPersonName"
+        android:textColorLink="@color/backgroundcolor"
         app:layout_constraintBottom_toTopOf="@+id/reviewText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="700dp"
     android:layout_width="match_parent"
+    android:background="@drawable/gradient"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,44 +19,45 @@
     <EditText
         android:id="@+id/lysingText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bSenda"
+        android:layout_height="350px"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/nafnText"
         android:ems="10"
+        android:hint="Lýsing"
         android:inputType="textMultiLine"
-        android:text="Lýsing" />
+        android:textColor="#ffffff" />
 
     <CheckBox
         android:id="@+id/cbTroppur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/checkBox"
-        android:layout_toLeftOf="@+id/lysingText"
-        android:layout_toStartOf="@+id/lysingText"
-        android:text="Tröppur" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/lysingText"
+        android:layout_marginEnd="38dp"
+        android:text="Tröppur"
+        android:textColor="#ffffff" />
 
     <CheckBox
         android:id="@+id/cbHandrid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/cbTroppur"
-        android:layout_toLeftOf="@+id/lysingText"
-        android:layout_toStartOf="@+id/lysingText"
-        android:text="Handrið" />
+        android:layout_below="@+id/lysingText"
+        android:layout_marginStart="42dp"
+        android:text="Handrið"
+        android:textColor="#ffffff" />
 
     <Button
         android:id="@+id/bSenda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/cbUpplyst"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="71dp"
+        android:layout_marginTop="314dp"
         android:onClick="onClick"
         android:text="Senda" />
 
@@ -63,71 +65,65 @@
         android:id="@+id/cbRampur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/cbHandrid"
-        android:layout_toLeftOf="@+id/lysingText"
-        android:layout_toStartOf="@+id/lysingText"
-        android:text="Rampur" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/cbInnandyra"
+        android:layout_marginEnd="13dp"
+        android:text="Rampur"
+        android:textColor="#ffffff" />
 
     <CheckBox
         android:id="@+id/cbVetur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/cbRampur"
-        android:layout_toLeftOf="@+id/lysingText"
-        android:layout_toStartOf="@+id/lysingText"
-        android:text="Vetrarvænt" />
+        android:layout_below="@+id/lysingText"
+        android:layout_centerHorizontal="true"
+        android:text="Vetrarvænt"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/nafnText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp"
-        android:layout_toEndOf="@+id/checkBox"
-        android:layout_toRightOf="@+id/checkBox"
         android:ems="10"
+        android:hint="Nafn"
         android:inputType="textPersonName"
-        android:text="Nafn" />
+        android:textColor="#ffffff" />
 
     <CheckBox
         android:id="@+id/cbInnandyra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/cbVetur"
-        android:layout_toLeftOf="@+id/lysingText"
-        android:layout_toStartOf="@+id/lysingText"
-        android:text="Innandyra" />
+        android:layout_alignTop="@+id/cbDropp"
+        android:layout_marginStart="95dp"
+        android:text="Innandyra"
+        android:textColor="#ffffff" />
 
     <CheckBox
         android:id="@+id/cbDropp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/cbInnandyra"
-        android:layout_toLeftOf="@+id/lysingText"
-        android:layout_toStartOf="@+id/lysingText"
-        android:text="Drop" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="267dp"
+        android:text="Drop"
+        android:textColor="#ffffff" />
 
     <CheckBox
         android:id="@+id/cbUpplyst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/cbDropp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/cbDropp"
-        android:layout_below="@+id/cbDropp"
-        android:text="Upplýst" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/cbRampur"
+        android:layout_marginEnd="101dp"
+        android:text="Upplýst"
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/hnitText"
@@ -137,17 +133,19 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/bSenda"
-        android:text="12123123123123123123123123123123"
+        android:layout_below="@+id/bMynd"
+        android:layout_marginTop="69dp"
+        android:text="Hér geturðu merkt staðinn inn á korti:"
+        android:textColor="#ffffff"
         android:textSize="14sp" />
 
     <Button
         android:id="@+id/bMynd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lysingText"
-        android:layout_toEndOf="@+id/cbDropp"
-        android:layout_toRightOf="@+id/cbDropp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/bSenda"
+        android:layout_marginStart="59dp"
         android:text="Taka mynd" />
 
 </RelativeLayout>

@@ -1,0 +1,8 @@
+<application>
+  <component name="ToolbarClicksCollector">
+    <counts>
+      <entry action="MakeGradleProject@NavBarToolbar" count="1" />
+      <entry action="Run@NavBarToolbar" count="2" />
+    </counts>
+  </component>
+</application>

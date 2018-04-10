@@ -10,8 +10,6 @@ að merka staðinn inn á kort.
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -37,7 +35,6 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -52,7 +49,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import isbhv2.hi.notandi.skater.controller.UserAreaActivity;
-import isbhv2.hi.notandi.skater.service.CameraActivity;
 import isbhv2.hi.notandi.skater.service.newSpotRequest;
 
 

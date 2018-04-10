@@ -24,13 +24,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".controller.LoginActivity"></activity>
         <activity android:name=".controller.FindPeople2Activity" />
         <activity android:name=".controller.FindPeopleActivity" />
         <activity android:name=".controller.FindPeopleListActivity" />
@@ -56,16 +50,19 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".service.CameraActivity"
-            android:label="@string/title_activity_camera"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.ListViewActivity" />
         <activity
             android:name=".InfoMapsActivity"
             android:label="@string/title_activity_info_maps" />
         <activity android:name=".controller.NewReviewActivity" />
-        <activity android:name=".controller.ReviewsActivity"></activity>
+        <activity android:name=".controller.ReviewsActivity" />
+        <activity android:name=".controller.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,9 @@
+<application>
+  <component name="MainMenuCollector">
+    <counts>
+      <entry path="File -&gt; Settings..." count="1" />
+      <entry path="Tools -&gt; AVD Manager" count="1" />
+      <entry path="Tools -&gt; SDK Manager" count="1" />
+    </counts>
+  </component>
+</application>

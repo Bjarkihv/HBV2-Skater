@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context="isbhv2.hi.notandi.skater.controller.RegisterActivity">
 
     <EditText
@@ -38,7 +39,7 @@
         android:id="@+id/registerButton"
         android:layout_width="356dp"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="Nýskrá"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         final Button bLogin = (Button) findViewById(R.id.loginButton);
         final TextView registerLink = (TextView) findViewById(R.id.registerLink);
 
-        // Ættum kannski að gera fragment klasa fyrir þetta
         registerLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
