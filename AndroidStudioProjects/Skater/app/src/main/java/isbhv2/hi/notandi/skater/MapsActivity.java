@@ -10,8 +10,15 @@ að merka staðinn inn á kort.
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -24,12 +31,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -48,6 +58,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import isbhv2.hi.notandi.skater.controller.CameraActivity;
 import isbhv2.hi.notandi.skater.controller.UserAreaActivity;
 import isbhv2.hi.notandi.skater.service.newSpotRequest;
 
@@ -64,7 +82,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng spot;
     private Marker currentLocationMarker;
     public static final int REQUEST_LOCATION_CODE = 99;
-
+    final int CAMERA_REQUEST = 1888;
+    ImageView mImageView;
+    File photoFile = new File("");
 
     /* TODO
     * Gera verification snyrtilegra og
@@ -84,10 +104,83 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return false;
     }
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            File f = new File(mCurrentPhotoPath);
+            Uri contentUri = Uri.fromFile(f);
+            mediaScanIntent.setData(contentUri);
+            Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
+            mImageView.setImageBitmap(bitmap);
+            //Bundle extras = data.getExtras();
+            //Bitmap imageBitmap = (Bitmap) extras.get("data");
+            mImageView.setImageBitmap(bitmap);
+
+        }
+    }
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mCurrentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
+
+        Map config = new HashMap();
+        config.put("cloud_name", "hbv2skater");
+        config.put("api_key", "459114518896268");
+        config.put("api_secret", "caVLsNO_5Amx89RBTroN2MUZP-w");
+        //MediaManager.init(this, config);
+
+        Cloudinary cloudinary = new Cloudinary(config);
+        try {
+            cloudinary.uploader().upload(f, ObjectUtils.emptyMap());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    String mCurrentPhotoPath;
+
+    private File createImageFile() throws IOException {
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                "example",  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+        mCurrentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            if (photoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
@@ -111,14 +204,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         final Button bSenda = (Button) findViewById(R.id.bSenda);
         final Button bMynd = (Button) findViewById(R.id.bMynd);
         final int CAMERA_REQUEST = 1888;
+        mImageView = (ImageView) findViewById(R.id.mImageView);
 
         bMynd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                dispatchTakePictureIntent();
             }
         });
+
+
 
         bSenda.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +227,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 final String innandyra = Boolean.toString(checkInnandyra.isChecked());
                 final String dropp = Boolean.toString(checkDropp.isChecked());
                 final String upplyst = Boolean.toString(checkUpplyst.isChecked());
-
+                galleryAddPic();
                 Double dLat = spot.latitude;
                 Double dLng = spot.longitude;
                 String lat = dLat.toString();

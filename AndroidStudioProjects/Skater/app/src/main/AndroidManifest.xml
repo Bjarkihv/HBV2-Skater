@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -30,10 +31,21 @@
         <activity android:name=".controller.FindPeopleListActivity" />
         <activity android:name=".controller.ListViewActivity" />
         <activity android:name=".controller.RegisterActivity" />
+        <activity android:name=".controller.CameraActivity" />
         <activity android:name=".controller.UserAreaActivity" />
         <activity android:name=".controller.AddSpotActivity" />
         <activity android:name=".controller.FindSpotActivity" />
         <activity android:name=".controller.ResultsActivity" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="isbhv2.hi.notandi.skater.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
