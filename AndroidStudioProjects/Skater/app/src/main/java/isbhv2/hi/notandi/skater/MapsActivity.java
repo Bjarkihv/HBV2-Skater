@@ -69,6 +69,8 @@ import isbhv2.hi.notandi.skater.controller.CameraActivity;
 import isbhv2.hi.notandi.skater.controller.UserAreaActivity;
 import isbhv2.hi.notandi.skater.service.newSpotRequest;
 
+import static java.util.Objects.isNull;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -79,7 +81,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleApiClient client;
     private LocationRequest locationRequest;
     private Location lastLocation;
-    private LatLng spot;
+    private LatLng spot = new LatLng(0.0, 0.0);
     private Marker currentLocationMarker;
     public static final int REQUEST_LOCATION_CODE = 99;
     final int CAMERA_REQUEST = 1888;
@@ -102,6 +104,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return true;
         else
             return false;
+    }
+
+    private boolean isNull(Object obj) {
+        return obj == null;
     }
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -218,55 +224,70 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         bSenda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String nafn = spotNafn.getText().toString();
-                final String lysing = spotLysing.getText().toString();
-                final String troppur = Boolean.toString(checkTroppur.isChecked());
-                final String handrid = Boolean.toString(checkHandrid.isChecked());
-                final String rampur = Boolean.toString(checkRampur.isChecked());
-                final String vetur = Boolean.toString(checkVetur.isChecked());
-                final String innandyra = Boolean.toString(checkInnandyra.isChecked());
-                final String dropp = Boolean.toString(checkDropp.isChecked());
-                final String upplyst = Boolean.toString(checkUpplyst.isChecked());
-                galleryAddPic();
-                Double dLat = spot.latitude;
-                Double dLng = spot.longitude;
-                String lat = dLat.toString();
-                String lng = dLng.toString();
+                if (spot.longitude == 0.0) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+                    builder.setMessage("Vinsamlegast merktu staðinn inn á kortinu")
+                            .setNegativeButton("Reyna aftur", null)
+                            .create()
+                            .show();
+                }
+                if (mCurrentPhotoPath == null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+                    builder.setMessage("Vinsamlegast taktu mynd af staðnum")
+                            .setNegativeButton("Reyna aftur", null)
+                            .create()
+                            .show();
+                }else {
+                    final String nafn = spotNafn.getText().toString();
+                    final String lysing = spotLysing.getText().toString();
+                    final String troppur = Boolean.toString(checkTroppur.isChecked());
+                    final String handrid = Boolean.toString(checkHandrid.isChecked());
+                    final String rampur = Boolean.toString(checkRampur.isChecked());
+                    final String vetur = Boolean.toString(checkVetur.isChecked());
+                    final String innandyra = Boolean.toString(checkInnandyra.isChecked());
+                    final String dropp = Boolean.toString(checkDropp.isChecked());
+                    final String upplyst = Boolean.toString(checkUpplyst.isChecked());
+                    galleryAddPic();
+                    Double dLat = spot.latitude;
+                    Double dLng = spot.longitude;
+                    final String lat = dLat.toString();
+                    final String lng = dLng.toString();
 
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("myTag", "Response móttekið");
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("myTag", "Response móttekið");
 
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                boolean success = jsonResponse.getBoolean("success");
 
-                            // Ef þetta tekst þá sendum við notanda aftur á login síðuna.
-                            if (success) {
-                                Log.d("myTag", "Intent keyrt");
-                                Intent intent = new Intent(MapsActivity.this, UserAreaActivity.class);
-                                MapsActivity.this.startActivity(intent);
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
-                                builder.setMessage("Skráning tókst ekki")
-                                        .setNegativeButton("Reyna aftur", null)
-                                        .create()
-                                        .show();
+                                // Ef þetta tekst þá sendum við notanda aftur á login síðuna.
+                                if (success) {
+                                    Log.d("myTag", "Intent keyrt");
+                                    Intent intent = new Intent(MapsActivity.this, UserAreaActivity.class);
+                                    MapsActivity.this.startActivity(intent);
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+                                    builder.setMessage("Skráning tókst ekki")
+                                            .setNegativeButton("Reyna aftur", null)
+                                            .create()
+                                            .show();
+                                }
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
 
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+                    };
 
-                    }
-                };
-
-                newSpotRequest spotRequest = new newSpotRequest(nafn, lysing, troppur, handrid, rampur,
-                        vetur, innandyra, dropp, upplyst, lat, lng, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(MapsActivity.this);
-                queue.add(spotRequest);
+                    newSpotRequest spotRequest = new newSpotRequest(nafn, lysing, troppur, handrid, rampur,
+                            vetur, innandyra, dropp, upplyst, lat, lng, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(MapsActivity.this);
+                    queue.add(spotRequest);
+                }
             }
 
         });
