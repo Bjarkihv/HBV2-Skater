@@ -222,6 +222,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         bSenda.setOnClickListener(new View.OnClickListener() {
+            final String nafn = spotNafn.getText().toString();
+            final String lysing = spotLysing.getText().toString();
+
             @Override
             public void onClick(View v) {
                 if (spot.longitude == 0.0) {
@@ -237,9 +240,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             .setNegativeButton("Reyna aftur", null)
                             .create()
                             .show();
+                }
+                if (nafn == null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+                    builder.setMessage("Vinsamlegast gefðu staðnum nafn")
+                            .setNegativeButton("Reyna aftur", null)
+                            .create()
+                            .show();
+                }
+                if (lysing == null) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+                    builder.setMessage("Vinsamlegast skrifaðu lýsingu um staðinn")
+                            .setNegativeButton("Reyna aftur", null)
+                            .create()
+                            .show();
                 }else {
-                    final String nafn = spotNafn.getText().toString();
-                    final String lysing = spotLysing.getText().toString();
+
                     final String troppur = Boolean.toString(checkTroppur.isChecked());
                     final String handrid = Boolean.toString(checkHandrid.isChecked());
                     final String rampur = Boolean.toString(checkRampur.isChecked());
