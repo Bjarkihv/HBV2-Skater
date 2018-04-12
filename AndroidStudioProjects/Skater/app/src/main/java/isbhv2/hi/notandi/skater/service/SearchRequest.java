@@ -32,6 +32,7 @@ public class SearchRequest extends StringRequest {
         params.put("innandyra", innandyra);
         params.put("dropp", dropp);
         params.put("upplyst", upplyst);
+        Log.d("Len ", troppur + " " + handrid + " " + rampur + " " + vetur + " " + innandyra + " " + dropp + " " + upplyst);
     }
 
     @Override

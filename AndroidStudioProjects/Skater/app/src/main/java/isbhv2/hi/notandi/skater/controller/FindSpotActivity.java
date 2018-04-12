@@ -175,6 +175,9 @@ public class FindSpotActivity extends AppCompatActivity {
                 final String dropp = Boolean.toString(checkDropp.isChecked());
                 final String upplyst = Boolean.toString(checkUpplyst.isChecked());
 
+                Log.d("Sendi:",  " " + troppur + " " + handrid + " " + rampur + " " + vetur + " " + innandyra
+                        + " " + dropp + " " + upplyst);
+
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -215,7 +218,7 @@ public class FindSpotActivity extends AppCompatActivity {
                                     upl = jsonArray.getString(10);
                                     cin = jsonArray.getString(11);
 
-                                    Log.d("Allt:", nfn + " " + lsng + " " + lat + " " + lng + " " + tr + " " + hr
+                                    Log.d("Allt:", nfn + " " + lsng + " " + lat + " " + lng + " " + tr
                                     + " " + hr + " " + rmp + " " + vtr + " " + indr + " " + drp + " " + upl + " " + cin);
                                     Log.d("Intentnafn, dæmi:", "nafn"+Integer.toString(i));
 
