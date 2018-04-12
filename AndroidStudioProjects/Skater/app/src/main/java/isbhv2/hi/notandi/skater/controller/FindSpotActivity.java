@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import isbhv2.hi.notandi.skater.R;
+import isbhv2.hi.notandi.skater.service.RandomRequest;
 import isbhv2.hi.notandi.skater.service.SearchRequest;
 
 public class FindSpotActivity extends AppCompatActivity {
@@ -155,7 +156,7 @@ public class FindSpotActivity extends AppCompatActivity {
                     }
                 };
 
-                SearchRequest searchRequest = new SearchRequest(troppur, handrid, rampur,
+                RandomRequest searchRequest = new RandomRequest(troppur, handrid, rampur,
                         vetur, innandyra, dropp, upplyst, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(FindSpotActivity.this);
                 queue.add(searchRequest);
